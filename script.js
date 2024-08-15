@@ -19,8 +19,7 @@ function addBombs(matrix, bombs) {
             col = Math.floor(Math.random() * matrix.length);
         }
         matrix[row][col] = "x";
-        const nextCells = getNextCells(matrix, row, col);
-        console.log(nextCells);
+        getNextCells(matrix, row, col);
     }
 }
 
@@ -54,16 +53,8 @@ function getNextCells(matrix, row, col) {
             const nextCell = matrix[newRow][newCol];
 
             matrix[newRow][newCol] = nextCell + 1;
-            nextCells.push(matrix[newRow][newCol]);
         }
     }
-
-    nextCells.forEach((cell) => {
-        const newCell = cell + 1;
-        cell = newCell;
-    });
-
-    return nextCells;
 }
 
 function renderGame(matrix) {
@@ -96,7 +87,7 @@ function renderGame(matrix) {
 
 const renderSpace = document.getElementById("render-space");
 const matrix = createEmptyMatrix(9, 9);
-addBombs(matrix, 15);
+addBombs(matrix, 12);
 
 console.log("Matriz gerada:", matrix);
 
