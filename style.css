@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+body {
+  background-color: rgb(163, 163, 163);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  font-size: 16px;
+}
+
+#render-space {
+  width: fit-content;
+  display: grid;
+  grid-template-columns: repeat(9, 60px);
+  grid-template-rows: repeat(9, 60px);
+  gap: 0.5rem;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(77, 77, 77);
+  padding: 1.5rem;
+  border-radius: 5px;
+  font-size: 1em;
+  color: white;
+  transition: 0.3s;
+}
+
+.cell:hover {
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.bomb {
+  background-color: rgb(255, 86, 86);
+}
