@@ -19,9 +19,8 @@ body {
 #render-space {
   width: fit-content;
   display: grid;
-  /* grid-template-columns: repeat(9, 60px); */
-  /* grid-template-rows: repeat(9, 60px); */
-  gap: 0.5rem;
+  gap: 0.3rem;
+  margin-bottom: 10%;
 }
 
 .cell {
@@ -38,7 +37,7 @@ body {
 
 .cell:hover {
   cursor: pointer;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .bomb {

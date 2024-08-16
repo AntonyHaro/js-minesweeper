@@ -91,7 +91,7 @@ function renderGame(matrix) {
 }
 
 const renderSpace = document.getElementById("render-space");
-const matrix = createEmptyMatrix(19, 9);
+const matrix = createEmptyMatrix(9, 9);
 addBombs(matrix, 12);
 
 console.log("Matriz gerada:", matrix);
