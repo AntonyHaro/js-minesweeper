@@ -10,13 +10,16 @@ const createEmptyMatrix = (rows, cols) => {
 };
 
 function addBombs(matrix, bombs) {
-    for (let i = 0; i < bombs; i++) {
-        let row = Math.floor(Math.random() * matrix.length);
-        let col = Math.floor(Math.random() * matrix.length);
+    const rows = matrix.length;
+    const cols = matrix[0].length;
 
-        while (matrix[row][col] == "x") {
-            row = Math.floor(Math.random() * matrix.length);
-            col = Math.floor(Math.random() * matrix.length);
+    for (let i = 0; i < bombs; i++) {
+        let row = Math.floor(Math.random() * rows);
+        let col = Math.floor(Math.random() * cols);
+
+        while (matrix[row][col] === "x") {
+            row = Math.floor(Math.random() * rows);
+            col = Math.floor(Math.random() * cols);
         }
         matrix[row][col] = "x";
         getNextCells(matrix, row, col);
@@ -26,17 +29,16 @@ function addBombs(matrix, bombs) {
 function getNextCells(matrix, row, col) {
     const rows = matrix.length;
     const cols = matrix[0].length;
-    const nextCells = [];
 
     const directions = [
-        [-1, -1], // cima-esquerda
-        [-1, 0], // cima
-        [-1, 1], // cima-direita
-        [0, -1], // esquerda
-        [0, 1], // direita
-        [1, -1], // baixo-esquerda
-        [1, 0], // baixo
-        [1, 1], // baixo-direita
+        [-1, -1],
+        [-1, 0],
+        [-1, 1],
+        [0, -1],
+        [0, 1],
+        [1, -1],
+        [1, 0],
+        [1, 1],
     ];
 
     for (const [dl, dc] of directions) {
@@ -48,11 +50,9 @@ function getNextCells(matrix, row, col) {
             newRow < rows &&
             newCol >= 0 &&
             newCol < cols &&
-            matrix[newRow][newCol] != "x"
+            matrix[newRow][newCol] !== "x"
         ) {
-            const nextCell = matrix[newRow][newCol];
-
-            matrix[newRow][newCol] = nextCell + 1;
+            matrix[newRow][newCol] = (matrix[newRow][newCol] || 0) + 1;
         }
     }
 }
@@ -60,10 +60,15 @@ function getNextCells(matrix, row, col) {
 function renderGame(matrix) {
     const createElement = (tag, className, text) => {
         const element = document.createElement(tag);
-        className ? (element.className = className) : undefined;
+        if (className) {
+            element.className = className;
+        }
         element.textContent = text;
         return element;
     };
+
+    renderSpace.style.gridTemplateRows = `repeat(${matrix.length}, 40px)`;
+    renderSpace.style.gridTemplateColumns = `repeat(${matrix[0].length}, 40px)`;
 
     matrix.forEach((row, row_index) => {
         row.forEach((col, col_index) => {
@@ -77,7 +82,7 @@ function renderGame(matrix) {
                     : createElement(
                           "div",
                           "cell",
-                          matrix[row_index][col_index]
+                          matrix[row_index][col_index] || ""
                       );
 
             renderSpace.appendChild(cell);
@@ -86,7 +91,7 @@ function renderGame(matrix) {
 }
 
 const renderSpace = document.getElementById("render-space");
-const matrix = createEmptyMatrix(9, 9);
+const matrix = createEmptyMatrix(19, 9);
 addBombs(matrix, 12);
 
 console.log("Matriz gerada:", matrix);

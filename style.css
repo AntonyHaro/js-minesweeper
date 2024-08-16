@@ -12,15 +12,15 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   font-size: 16px;
 }
 
 #render-space {
   width: fit-content;
   display: grid;
-  grid-template-columns: repeat(9, 60px);
-  grid-template-rows: repeat(9, 60px);
+  /* grid-template-columns: repeat(9, 60px); */
+  /* grid-template-rows: repeat(9, 60px); */
   gap: 0.5rem;
 }
 
