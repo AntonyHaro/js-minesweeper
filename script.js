@@ -76,18 +76,28 @@ function renderGame(matrix) {
                 matrix[row_index][col_index] === "x"
                     ? createElement(
                           "div",
-                          "cell bomb",
-                          matrix[row_index][col_index]
+                          "cell bomb cover",
                       )
                     : createElement(
                           "div",
-                          "cell",
-                          matrix[row_index][col_index] || ""
+                          "cell cover",
                       );
+
+            cell.addEventListener("click", (event) =>
+                handleClick(event, matrix[row_index][col_index])
+            );
 
             renderSpace.appendChild(cell);
         });
     });
+}
+
+function handleClick(event, cellValue) {
+    const cell = event.target;
+    console.log(cellValue)
+    cell.innerHTML = cellValue
+    cell.classList.remove("cover");
+    console.log(cell);
 }
 
 const renderSpace = document.getElementById("render-space");

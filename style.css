@@ -32,7 +32,7 @@ body {
   border-radius: 5px;
   font-size: 1em;
   color: white;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 .cell:hover {
@@ -42,4 +42,14 @@ body {
 
 .bomb {
   background-color: rgb(255, 86, 86);
+}
+
+.cover {
+  color: transparent;
+  text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  background-color: gray;
+}
+
+.reveal {
+  background-color: rgb(96, 152, 255);
 }
