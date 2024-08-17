@@ -143,7 +143,7 @@ let fimJogo = false;
 
 const renderSpace = document.getElementById("render-space");
 
-const matrix = createEmptyMatrix(30, 30);
-addBombs(matrix, 60);
+const matrix = createEmptyMatrix(9, 9);
+addBombs(matrix, 15);
 
 renderGame(matrix, renderSpace);
