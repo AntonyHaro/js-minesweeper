@@ -57,53 +57,69 @@ function getNextCells(matrix, row, col) {
     }
 }
 
-function renderGame(matrix) {
-    const createElement = (tag, className, text) => {
+function renderGame(matrix, renderSpace) {
+    const createElement = (tag, className) => {
         const element = document.createElement(tag);
-        if (className) {
-            element.className = className;
-        }
-        element.textContent = text;
+        element.className = className;
         return element;
     };
 
     renderSpace.style.gridTemplateRows = `repeat(${matrix.length}, 40px)`;
     renderSpace.style.gridTemplateColumns = `repeat(${matrix[0].length}, 40px)`;
 
-    matrix.forEach((row, row_index) => {
-        row.forEach((col, col_index) => {
+    matrix.forEach((row, rowIndex) => {
+        row.forEach((col, colIndex) => {
             const cell =
-                matrix[row_index][col_index] === "x"
-                    ? createElement(
-                          "div",
-                          "cell bomb cover",
-                      )
-                    : createElement(
-                          "div",
-                          "cell cover",
-                      );
+                matrix[rowIndex][colIndex] === "x"
+                    ? createElement("div", "cell bomb cover")
+                    : createElement("div", "cell cover");
 
             cell.addEventListener("click", (event) =>
-                handleClick(event, matrix[row_index][col_index])
+                handleClick(event, matrix, matrix[rowIndex][colIndex] || "")
             );
-
             renderSpace.appendChild(cell);
         });
     });
 }
 
-function handleClick(event, cellValue) {
+function handleClick(event, matrix, cellValue) {
     const cell = event.target;
-    console.log(cellValue)
-    cell.innerHTML = cellValue
+    if (!cell.classList.contains("cover") || fimJogo) return;
+    cell.innerHTML = cellValue;
     cell.classList.remove("cover");
-    console.log(cell);
+
+    if (cellValue === "x") {
+        fimJogo = true;
+        revealBombs(matrix);
+    }
 }
 
+function revealBombs(matrix) {
+    matrix.forEach((row, rowIndex) => {
+        row.forEach((col, colIndex) => {
+            if (matrix[rowIndex][colIndex] === "x") {
+                const cell =
+                    renderSpace.children[
+                        rowIndex * matrix[0].length + colIndex
+                    ];
+                cell.innerHTML = "💣";
+                revealBomb(cell);
+            }
+        });
+    });
+}
+
+function revealBomb(bomb) {
+    setTimeout(() => {
+        bomb.classList.remove("cover");
+    }, 1200);
+}
+
+let fimJogo = false;
+
 const renderSpace = document.getElementById("render-space");
+
 const matrix = createEmptyMatrix(9, 9);
 addBombs(matrix, 12);
 
-console.log("Matriz gerada:", matrix);
-
-renderGame(matrix);
+renderGame(matrix, renderSpace);
