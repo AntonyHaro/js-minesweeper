@@ -12,7 +12,7 @@ body {
   font-size: 16px;
 }
 
-/* + light mode and dark mode */
+/* add light mode and dark mode */
 
 main {
   height: 100vh;
@@ -35,7 +35,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(126, 126, 126);
+  background-color: rgb(135, 135, 135);
   border-radius: 5px;
   font-size: 1em;
   color: white;
@@ -47,7 +47,7 @@ main {
 }
 
 .cover {
-  background-color: rgb(70, 70, 70);
+  background-color: rgb(68, 68, 68);
 }
 
 .cover:hover {
@@ -55,6 +55,6 @@ main {
   border-radius: 10px;
 }
 
-.reveal {
-  background-color: rgb(96, 152, 255);
+.flag {
+  background-color: rgb(102, 102, 102);
 }

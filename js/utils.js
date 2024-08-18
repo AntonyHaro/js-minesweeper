@@ -34,7 +34,7 @@ export const revealBombs = (matrix) => {
                 );
                 if (cell) {
                     cell.innerHTML = "💣";
-                    cell.classList.remove("cover");
+                    cell.className = "cell bomb"
                 }
             }
         });

@@ -28,6 +28,11 @@ function renderGame(matrix, renderSpace) {
             cell.addEventListener("click", () =>
                 handleClick(matrix, rowIndex, colIndex)
             );
+
+            cell.addEventListener("contextmenu", (event) => {
+                handleRightClick(event);
+            });
+
             renderSpace.appendChild(cell);
         });
     });
@@ -53,6 +58,21 @@ function handleClick(matrix, row, col) {
         setTimeout(() => {
             revealBombs(matrix);
         }, 800);
+    }
+}
+
+function handleRightClick(event) {
+    event.preventDefault();
+    const cell = event.target;
+
+    if (!cell.classList.contains("cover") || fimJogo) return;
+
+    if (cell.classList.contains("flag")) {
+        cell.classList.remove("flag");
+        cell.innerHTML = ""; 
+    } else {
+        cell.classList.add("flag");
+        cell.innerHTML = "🚩"; 
     }
 }
 
