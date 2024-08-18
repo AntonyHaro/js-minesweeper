@@ -1,10 +1,12 @@
-import { createMatrix } from "./matrix.js"
+import { createMatrix } from "./matrix.js";
+import { revealNextCells, revealBombs } from "./utils.js";
 
 function renderGame(matrix, renderSpace) {
-    const createElement = (tag, className, id) => {
+    const createElement = (tag, className, row, col) => {
         const element = document.createElement(tag);
         element.className = className;
-        element.id = id;
+        element.dataset.row = row;
+        element.dataset.col = col;
         return element;
     };
 
@@ -18,13 +20,10 @@ function renderGame(matrix, renderSpace) {
                     ? createElement(
                           "div",
                           "cell bomb cover",
-                          `${rowIndex}_${colIndex}`
+                          rowIndex,
+                          colIndex
                       )
-                    : createElement(
-                          "div",
-                          "cell cover",
-                          `${rowIndex}_${colIndex}`
-                      );
+                    : createElement("div", "cell cover", rowIndex, colIndex);
 
             cell.addEventListener("click", () =>
                 handleClick(matrix, rowIndex, colIndex)
@@ -35,7 +34,10 @@ function renderGame(matrix, renderSpace) {
 }
 
 function handleClick(matrix, row, col) {
-    const cell = document.getElementById(`${row}_${col}`);
+    const cell = document.querySelector(
+        `.cell[data-row="${row}"][data-col="${col}"]`
+    );
+
     if (!cell.classList.contains("cover") || fimJogo) return;
 
     cell.classList.remove("cover");
@@ -43,7 +45,7 @@ function handleClick(matrix, row, col) {
     cell.innerHTML = cellValue === "x" ? "💣" : cellValue || "";
 
     if (cellValue === 0) {
-        revealNextCells(matrix, row, col);
+        revealNextCells(matrix, row, col, handleClick);
     }
 
     if (cellValue === "x") {
@@ -52,47 +54,6 @@ function handleClick(matrix, row, col) {
             revealBombs(matrix);
         }, 800);
     }
-}
-
-function revealNextCells(matrix, row, col) {
-    const directions = [
-        [-1, -1],
-        [-1, 0],
-        [-1, 1],
-        [0, -1],
-        [0, 1],
-        [1, -1],
-        [1, 0],
-        [1, 1],
-    ];
-
-    for (const [dl, dc] of directions) {
-        const newRow = row + dl;
-        const newCol = col + dc;
-        if (
-            newRow < 0 ||
-            newRow > matrix.length - 1 ||
-            newCol < 0 ||
-            newCol > matrix[0].length - 1
-        ) {
-            continue;
-        }
-        handleClick(matrix, newRow, newCol);
-    }
-}
-
-function revealBombs(matrix) {
-    matrix.forEach((row, rowIndex) => {
-        row.forEach((col, colIndex) => {
-            if (matrix[rowIndex][colIndex] === "x") {
-                const cell = document.getElementById(`${rowIndex}_${colIndex}`);
-                if (cell) {
-                    cell.innerHTML = "💣";
-                    cell.classList.remove("cover");
-                }
-            }
-        });
-    });
 }
 
 let fimJogo = false;

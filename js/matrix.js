@@ -28,11 +28,11 @@ const addBombs = (matrix, bombs) => {
             col = Math.floor(Math.random() * cols);
         }
         matrix[row][col] = "x";
-        getNextCells(matrix, row, col);
+        updateAdjacentCells(matrix, row, col);
     }
 };
 
-const getNextCells = (matrix, row, col) => {
+const updateAdjacentCells = (matrix, row, col) => {
     const rows = matrix.length;
     const cols = matrix[0].length;
 
