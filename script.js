@@ -136,7 +136,7 @@ function revealBombs(matrix) {
 function revealBomb(bomb) {
     setTimeout(() => {
         bomb.classList.remove("cover");
-    }, 1200);
+    }, 800);
 }
 
 let fimJogo = false;
