@@ -25,12 +25,12 @@ function renderGame(matrix, renderSpace) {
                       )
                     : createElement("div", "cell cover", rowIndex, colIndex);
 
-            cell.addEventListener("click", () =>
-                handleClick(matrix, rowIndex, colIndex)
+            cell.addEventListener("click", (event) =>
+                handleClick(event, matrix, rowIndex, colIndex)
             );
 
             cell.addEventListener("contextmenu", (event) => {
-                handleRightClick(event);
+                placeFlag(event);
             });
 
             renderSpace.appendChild(cell);
@@ -38,14 +38,26 @@ function renderGame(matrix, renderSpace) {
     });
 }
 
-function handleClick(matrix, row, col) {
-    const cell = document.querySelector(
-        `.cell[data-row="${row}"][data-col="${col}"]`
-    );
+function handleClick(event, matrix, row, col) {
+    let cell;
+    if (event) {
+        cell = event.target;
+    } else {
+        cell = document.querySelector(
+            `.cell[data-row="${row}"][data-col="${col}"]`
+        );
+    }
 
-    if (!cell.classList.contains("cover") || fimJogo) return;
+    if (!cell.classList.contains("cover") || endGame) return;
+
+    if (placeFlags) {
+        placeFlag(event);
+        return;
+    }
 
     cell.classList.remove("cover");
+    cell.classList.contains("flag") ? cell.classList.remove("flag") : null;
+
     const cellValue = matrix[row][col];
     cell.innerHTML = cellValue === "x" ? "💣" : cellValue || "";
 
@@ -54,29 +66,29 @@ function handleClick(matrix, row, col) {
     }
 
     if (cellValue === "x") {
-        fimJogo = true;
+        endGame = true;
         setTimeout(() => {
             revealBombs(matrix);
         }, 800);
     }
 }
 
-function handleRightClick(event) {
+function placeFlag(event) {
     event.preventDefault();
     const cell = event.target;
 
-    if (!cell.classList.contains("cover") || fimJogo) return;
+    if (!cell.classList.contains("cover") || endGame) return;
 
     if (cell.classList.contains("flag")) {
         cell.classList.remove("flag");
-        cell.innerHTML = ""; 
+        cell.innerHTML = "";
     } else {
         cell.classList.add("flag");
-        cell.innerHTML = "🚩"; 
+        cell.innerHTML = "🚩";
     }
 }
 
-let fimJogo = false;
+let endGame = false;
 
 const renderSpace = document.getElementById("render-space");
 
@@ -84,3 +96,27 @@ const matrix = createMatrix(16, 16, 40);
 console.log(matrix);
 
 renderGame(matrix, renderSpace);
+
+let placeFlags = false;
+
+const themeToggleButton = document.getElementById("theme-toggle");
+themeToggleButton.addEventListener("click", () => {
+    if (document.body.classList.contains("dark-mode")) {
+        document.body.classList.remove("dark-mode");
+        themeToggleButton.innerHTML = "🌞";
+        return;
+    }
+    document.body.classList.add("dark-mode");
+    themeToggleButton.innerHTML = "🌙";
+});
+
+const flagToggleButton = document.getElementById("flag-toggle");
+flagToggleButton.addEventListener("click", () => {
+    if (!placeFlags) {
+        placeFlags = true;
+        flagToggleButton.classList.add("place-flags-on");
+        return;
+    }
+    placeFlags = false;
+    flagToggleButton.classList.remove("place-flags-on");
+});

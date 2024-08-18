@@ -1,0 +1,97 @@
+:root {
+  --primary-background: hsl(0, 0%, 64%);
+  --cell-background: hsl(0, 0%, 57%);
+  --bomb-cell-background: hsl(0, 100%, 72%);
+  --cover-cell-bakckground: hsl(0, 0%, 45%);
+  --cover-cell-bakckground-hover: hsl(0, 0%, 35%);
+  --flag-cell-background: hsl(0, 0%, 50%);
+  --text-color: hsl(0, 0%, 9%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "JetBrains Mono", monospace;
+}
+
+body.dark-mode {
+  --primary-background: hsl(0, 0%, 30%);
+  --cell-background: hsl(0, 0%, 44%);
+  --bomb-cell-background: hsl(0, 100%, 62%);
+  --cover-cell-bakckground: hsl(0, 0%, 17%);
+  --cover-cell-bakckground-hover: hsl(0, 0%, 13%);
+  --flag-cell-background: hsl(0, 0%, 23%);
+  --text-color: hsl(0, 0%, 83%);
+}
+
+body {
+  height: 100vh;
+  background-color: var(--primary-background);
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.3rem;
+  transition: 0.3s;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1em;
+}
+
+button {
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 1em;
+  border: 2px solid var(--cell-background);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.place-flags-on {
+  background-color: var(--cell-background);
+}
+
+#render-space {
+  width: fit-content;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.cell {
+  height: 35px;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cell-background);
+  border-radius: 5px;
+  font-size: 1em;
+  transition: 0.2s;
+}
+
+.bomb {
+  background-color: var(--bomb-cell-background);
+}
+
+.cover {
+  background-color: var(--cover-cell-bakckground);
+}
+
+.cover:hover {
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: var(--cover-cell-bakckground-hover);
+}
+
+.flag {
+  background-color: var(--flag-cell-background);
+}

@@ -21,7 +21,7 @@ export const revealNextCells = (matrix, row, col, handleClick) => {
         ) {
             continue;
         }
-        handleClick(matrix, newRow, newCol);
+        handleClick("", matrix, newRow, newCol);
     }
 };
 
@@ -34,7 +34,7 @@ export const revealBombs = (matrix) => {
                 );
                 if (cell) {
                     cell.innerHTML = "💣";
-                    cell.className = "cell bomb"
+                    cell.className = "cell bomb";
                 }
             }
         });
