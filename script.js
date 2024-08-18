@@ -58,9 +58,10 @@ function getNextCells(matrix, row, col) {
 }
 
 function renderGame(matrix, renderSpace) {
-    const createElement = (tag, className) => {
+    const createElement = (tag, className, id) => {
         const element = document.createElement(tag);
         element.className = className;
+        element.id = id;
         return element;
     };
 
@@ -71,22 +72,45 @@ function renderGame(matrix, renderSpace) {
         row.forEach((col, colIndex) => {
             const cell =
                 matrix[rowIndex][colIndex] === "x"
-                    ? createElement("div", "cell bomb cover")
-                    : createElement("div", "cell cover");
+                    ? createElement("div", "cell bomb cover", `${rowIndex}_${colIndex}`)
+                    : createElement("div", "cell cover", `${rowIndex}_${colIndex}`);
 
-            cell.addEventListener("click", (event) =>
-                handleClick(event, matrix, matrix[rowIndex][colIndex] || "")
+            cell.addEventListener("click", () =>
+                handleClick(matrix, rowIndex, colIndex, matrix[rowIndex][colIndex] || "")
             );
             renderSpace.appendChild(cell);
         });
     });
 }
 
-function handleClick(event, matrix, cellValue) {
-    const cell = event.target;
+function handleClick(matrix, row, col, cellValue) {
+    console.log(row, col);
+    const cell = document.getElementById( `${row}_${col}`);
     if (!cell.classList.contains("cover") || fimJogo) return;
     cell.innerHTML = cellValue;
     cell.classList.remove("cover");
+
+    if (cellValue === "") {
+        const directions = [
+            [-1, -1],
+            [-1, 0],
+            [-1, 1],
+            [0, -1],
+            [0, 1],
+            [1, -1],
+            [1, 0],
+            [1, 1],
+        ];
+    
+        for (const [dl, dc] of directions) {
+            const newRow = row + dl;
+            const newCol = col + dc;
+            if (newRow < 0 || newRow > (matrix.length - 1) || newCol < 0 || newCol > (matrix[0].length - 1)) {
+                continue;
+            }
+            handleClick(matrix, newRow, newCol, matrix[newRow][newCol] || "");
+        }
+    }
 
     if (cellValue === "x") {
         fimJogo = true;
@@ -120,6 +144,6 @@ let fimJogo = false;
 const renderSpace = document.getElementById("render-space");
 
 const matrix = createEmptyMatrix(9, 9);
-addBombs(matrix, 12);
+addBombs(matrix, 15);
 
 renderGame(matrix, renderSpace);
