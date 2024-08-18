@@ -10,8 +10,8 @@ function renderGame(matrix, renderSpace) {
         return element;
     };
 
-    renderSpace.style.gridTemplateRows = `repeat(${matrix.length}, 40px)`;
-    renderSpace.style.gridTemplateColumns = `repeat(${matrix[0].length}, 40px)`;
+    renderSpace.style.gridTemplateRows = `repeat(${matrix.length}, 1fr)`;
+    renderSpace.style.gridTemplateColumns = `repeat(${matrix[0].length}, 1fr)`;
 
     matrix.forEach((row, rowIndex) => {
         row.forEach((col, colIndex) => {
@@ -60,7 +60,7 @@ let fimJogo = false;
 
 const renderSpace = document.getElementById("render-space");
 
-const matrix = createMatrix(9, 9, 12);
+const matrix = createMatrix(16, 16, 40);
 console.log(matrix);
 
 renderGame(matrix, renderSpace);

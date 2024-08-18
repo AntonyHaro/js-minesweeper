@@ -7,37 +7,39 @@
 }
 
 body {
+  height: 100vh;
   background-color: rgb(163, 163, 163);
+  font-size: 16px;
+}
+
+/* + light mode and dark mode */
+
+main {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: 100vh;
-  font-size: 16px;
+  gap: 3%;
 }
 
 #render-space {
   width: fit-content;
   display: grid;
   gap: 0.3rem;
-  margin-bottom: 10%;
 }
 
 .cell {
+  height: 35px;
+  width: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(77, 77, 77);
-  padding: 1.5rem;
+  background-color: rgb(126, 126, 126);
   border-radius: 5px;
   font-size: 1em;
   color: white;
   transition: 0.2s;
-}
-
-.cell:hover {
-  cursor: pointer;
-  border-radius: 10px;
 }
 
 .bomb {
@@ -45,9 +47,12 @@ body {
 }
 
 .cover {
-  color: transparent;
-  text-shadow: 0 0 0 rgba(255, 255, 255, 0);
-  background-color: gray;
+  background-color: rgb(70, 70, 70);
+}
+
+.cover:hover {
+  cursor: pointer;
+  border-radius: 10px;
 }
 
 .reveal {
