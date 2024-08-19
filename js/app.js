@@ -1,52 +1,15 @@
 import { createMatrix } from "./matrix.js";
 import { revealNextCells, revealBombs } from "./utils.js";
-
-function renderGame(matrix, renderSpace) {
-    const createElement = (tag, className, row, col) => {
-        const element = document.createElement(tag);
-        element.className = className;
-        element.dataset.row = row;
-        element.dataset.col = col;
-        return element;
-    };
-
-    renderSpace.style.gridTemplateRows = `repeat(${matrix.length}, 1fr)`;
-    renderSpace.style.gridTemplateColumns = `repeat(${matrix[0].length}, 1fr)`;
-
-    matrix.forEach((row, rowIndex) => {
-        row.forEach((col, colIndex) => {
-            const cell =
-                matrix[rowIndex][colIndex] === "x"
-                    ? createElement(
-                          "div",
-                          "cell bomb cover",
-                          rowIndex,
-                          colIndex
-                      )
-                    : createElement("div", "cell cover", rowIndex, colIndex);
-
-            cell.addEventListener("click", (event) =>
-                handleClick(event, matrix, rowIndex, colIndex)
-            );
-
-            cell.addEventListener("contextmenu", (event) => {
-                placeFlag(event);
-            });
-
-            renderSpace.appendChild(cell);
-        });
-    });
-}
+import { renderGame } from "./render.js";
 
 function handleClick(event, matrix, row, col) {
     let cell;
-    if (event) {
-        cell = event.target;
-    } else {
-        cell = document.querySelector(
-            `.cell[data-row="${row}"][data-col="${col}"]`
-        );
-    }
+
+    event
+        ? (cell = event.target)
+        : (cell = document.querySelector(
+              `.cell[data-row="${row}"][data-col="${col}"]`
+          ));
 
     if (!cell.classList.contains("cover") || endGame) return;
 
@@ -59,11 +22,9 @@ function handleClick(event, matrix, row, col) {
     cell.classList.contains("flag") ? cell.classList.remove("flag") : null;
 
     const cellValue = matrix[row][col];
-    cell.innerHTML = cellValue === "x" ? "💣" : cellValue || "";
 
-    if (cellValue === 0) {
-        revealNextCells(matrix, row, col, handleClick);
-    }
+    cell.innerHTML = cellValue === "x" ? "💣" : cellValue || "";
+    cellValue === 0 ? revealNextCells(matrix, row, col, handleClick) : null;
 
     if (cellValue === "x") {
         endGame = true;
@@ -95,7 +56,7 @@ const renderSpace = document.getElementById("render-space");
 const matrix = createMatrix(16, 16, 40);
 console.log(matrix);
 
-renderGame(matrix, renderSpace);
+renderGame(matrix, renderSpace, handleClick, placeFlag);
 
 let placeFlags = false;
 
@@ -114,9 +75,9 @@ const flagToggleButton = document.getElementById("flag-toggle");
 flagToggleButton.addEventListener("click", () => {
     if (!placeFlags) {
         placeFlags = true;
-        flagToggleButton.classList.add("place-flags-on");
+        flagToggleButton.style.backgroundColor = "var(--cell-background)";
         return;
     }
     placeFlags = false;
-    flagToggleButton.classList.remove("place-flags-on");
+    flagToggleButton.style.backgroundColor = "transparent";
 });

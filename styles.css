@@ -54,10 +54,12 @@ button {
   border: 2px solid var(--cell-background);
   border-radius: 50%;
   background: transparent;
+  transition: 0.3s;
 }
 
-.place-flags-on {
-  background-color: var(--cell-background);
+button:hover {
+  border-color: var(--cover-cell-bakckground);
+  border-radius: 15px;
 }
 
 #render-space {
