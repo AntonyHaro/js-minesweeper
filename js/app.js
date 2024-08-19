@@ -4,14 +4,14 @@ import { renderGame } from "./render.js";
 
 function handleClick(event, matrix, row, col) {
     let cell;
-
     event
         ? (cell = event.target)
         : (cell = document.querySelector(
               `.cell[data-row="${row}"][data-col="${col}"]`
           ));
 
-    if (!cell.classList.contains("cover") || endGame) return;
+    if (!cell.classList.contains("cover") || endGame || cell.innerHTML === "🚩")
+        return;
 
     if (placeFlags) {
         placeFlag(event);
