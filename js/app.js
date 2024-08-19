@@ -1,6 +1,7 @@
 import { createMatrix } from "./matrix.js";
-import { revealNextCells, revealBombs } from "./utils.js";
+import { revealNextCells, revealBombs } from "./revealCells.js";
 import { renderGame } from "./render.js";
+import { toggleTheme } from "./support.js";
 
 function handleClick(event, matrix, row, col) {
     let cell;
@@ -51,25 +52,16 @@ function placeFlag(event) {
 
 let endGame = false;
 
-const renderSpace = document.getElementById("render-space");
+const toggleButton = document.getElementById("theme-toggle");
+toggleTheme(toggleButton);
 
 const matrix = createMatrix(16, 16, 40);
 console.log(matrix);
 
+const renderSpace = document.getElementById("render-space");
 renderGame(matrix, renderSpace, handleClick, placeFlag);
 
 let placeFlags = false;
-
-const themeToggleButton = document.getElementById("theme-toggle");
-themeToggleButton.addEventListener("click", () => {
-    if (document.body.classList.contains("dark-mode")) {
-        document.body.classList.remove("dark-mode");
-        themeToggleButton.innerHTML = "🌞";
-        return;
-    }
-    document.body.classList.add("dark-mode");
-    themeToggleButton.innerHTML = "🌙";
-});
 
 const flagToggleButton = document.getElementById("flag-toggle");
 flagToggleButton.addEventListener("click", () => {
