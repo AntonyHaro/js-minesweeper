@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Minesweeper</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            rel="shortcut icon"
-            href="assets/favicon.png"
-            type="image/x-icon"
-        />
-        <link rel="stylesheet" href="styles.css" />
-        <script type="module" src="./js/app.js" defer></script>
-    </head>
-    <body>
-        <header>
-            <h1 style="margin-right: 7%;">Minesweeper</h1>
-            <button id="theme-toggle">🌞</button>
-            <button id="flag-toggle">🚩</button>
-        </header>
-        <main>
-            <div id="render-space"></div>
-        </main>
-    </body>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minesweeper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet" />
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="./js/app.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Mineswipper</h1>
+    </header>
+    <main>
+        <div id="render-space"></div>
+        <hr>
+        <div id="player-status">
+            <div id="time">00:00</div>
+            <span>
+                <button id="theme-toggle">🌞</button>
+                <button id="flag-toggle">🚩</button>
+            </span>
+
+        </div>
+    </main>
+
+</body>
+
 </html>
