@@ -1,4 +1,4 @@
-export const renderGame = (matrix, renderSpace, handleClick, placeFlag) => {
+export const renderGame = (matrix, renderSpace, handleClick, placeFlag, bombQuantity) => {
     const createElement = (tag, className, row, col) => {
         const element = document.createElement(tag);
         element.className = className;
@@ -23,7 +23,7 @@ export const renderGame = (matrix, renderSpace, handleClick, placeFlag) => {
                     : createElement("div", "cell cover", rowIndex, colIndex);
 
             cell.addEventListener("click", (event) =>
-                handleClick(event, matrix, rowIndex, colIndex)
+                handleClick(event, matrix, rowIndex, colIndex, bombQuantity)
             );
 
             cell.addEventListener("contextmenu", (event) => {

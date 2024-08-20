@@ -1,4 +1,4 @@
-export const revealNextCells = (matrix, row, col, handleClick) => {
+export const revealNextCells = (matrix, row, col, handleClick, bombQuantity) => {
     const directions = [
         [-1, -1],
         [-1, 0],
@@ -21,7 +21,7 @@ export const revealNextCells = (matrix, row, col, handleClick) => {
         ) {
             continue;
         }
-        handleClick("", matrix, newRow, newCol);
+        handleClick("", matrix, newRow, newCol, bombQuantity);
     }
 };
 
