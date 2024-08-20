@@ -1,11 +1,12 @@
 :root {
-  --primary-background: hsl(0, 0%, 64%);
-  --cell-background: hsl(0, 0%, 57%);
+  --primary-background: hsl(0, 0%, 93%);
+  --cell-background: hsl(0, 0%, 87%);
   --bomb-cell-background: hsl(0, 100%, 72%);
-  --cover-cell-bakckground: hsl(0, 0%, 45%);
-  --cover-cell-bakckground-hover: hsl(0, 0%, 35%);
-  --flag-cell-background: hsl(0, 0%, 50%);
-  --text-color: hsl(0, 0%, 9%);
+  --cover-cell-bakckground: hsl(0, 0%, 70%);
+  --cover-cell-bakckground-hover: hsl(0, 0%, 60%);
+  --flag-cell-background: hsl(0, 0%, 80%);
+  --border-color: hsl(0, 0%, 80%);
+  --text-color: hsl(0, 0%, 35%);
 }
 
 * {
@@ -16,12 +17,13 @@
 }
 
 body.dark-mode {
-  --primary-background: hsl(0, 0%, 30%);
-  --cell-background: hsl(0, 0%, 44%);
-  --bomb-cell-background: hsl(0, 100%, 62%);
-  --cover-cell-bakckground: hsl(0, 0%, 17%);
+  --primary-background: hsl(0, 0%, 20%);
+  --cell-background: hsl(0, 0%, 28%);
+  --bomb-cell-background: hsl(0, 75%, 55%);
+  --cover-cell-bakckground: hsl(0, 0%, 15%);
   --cover-cell-bakckground-hover: hsl(0, 0%, 13%);
   --flag-cell-background: hsl(0, 0%, 23%);
+  --border-color: hsl(0, 0%, 23%);
   --text-color: hsl(0, 0%, 83%);
 }
 
@@ -35,7 +37,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 1.3rem;
+  gap: 2rem;
   transition: 0.3s;
 }
 
@@ -43,15 +45,19 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  font-size: 1em;
+}
+
+h1 {
+  margin-bottom: 5%;
+  font-size: 2.4em;
+  color: var(--bomb-cell-background);
 }
 
 button {
   cursor: pointer;
   padding: 1rem;
   font-size: 1em;
-  border: 2px solid var(--cell-background);
+  border: 2px solid var(--border-color);
   border-radius: 50%;
   background: transparent;
   transition: 0.3s;
@@ -60,6 +66,21 @@ button {
 button:hover {
   border-color: var(--cover-cell-bakckground);
   border-radius: 15px;
+}
+
+#time {
+  padding: 1rem;
+  font-size: 1em;
+  border: 2px solid var(--border-color);
+  border-radius: 15px;
+  background: transparent;
+  transition: 0.3s;
+}
+
+main {
+  width: max-content;
+  display: grid;
+  gap: 1.1rem;
 }
 
 #render-space {
@@ -96,4 +117,12 @@ button:hover {
 
 .flag {
   background-color: var(--flag-cell-background);
+}
+
+#player-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 1em;
 }
