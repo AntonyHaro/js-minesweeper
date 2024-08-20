@@ -1,6 +1,5 @@
 :root {
   --primary-background: hsl(0, 0%, 93%);
-  --cell-background: hsl(0, 0%, 87%);
   --bomb-cell-background: hsl(0, 100%, 72%);
   --cover-cell-bakckground: hsl(0, 0%, 70%);
   --cover-cell-bakckground-hover: hsl(0, 0%, 60%);
@@ -18,12 +17,11 @@
 
 body.dark-mode {
   --primary-background: hsl(0, 0%, 20%);
-  --cell-background: hsl(0, 0%, 28%);
   --bomb-cell-background: hsl(0, 75%, 55%);
   --cover-cell-bakckground: hsl(0, 0%, 15%);
   --cover-cell-bakckground-hover: hsl(0, 0%, 13%);
   --flag-cell-background: hsl(0, 0%, 23%);
-  --border-color: hsl(0, 0%, 23%);
+  --border-color: hsl(0, 0%, 27%);
   --text-color: hsl(0, 0%, 83%);
 }
 
@@ -48,8 +46,7 @@ header {
 }
 
 h1 {
-  margin-bottom: 5%;
-  font-size: 2.4em;
+  font-size: 2.2em;
   color: var(--bomb-cell-background);
 }
 
@@ -90,22 +87,24 @@ main {
 }
 
 .cell {
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--cell-background);
+  border: 1px solid var(--border-color);
   border-radius: 5px;
   font-size: 1em;
   transition: 0.2s;
 }
 
 .bomb {
+  border: none;
   background-color: var(--bomb-cell-background);
 }
 
 .cover {
+  border: none;
   background-color: var(--cover-cell-bakckground);
 }
 
@@ -117,6 +116,12 @@ main {
 
 .flag {
   background-color: var(--flag-cell-background);
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--border-color);
 }
 
 #player-status {

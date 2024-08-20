@@ -55,7 +55,7 @@ flagToggleButton.addEventListener("click", () => {
     placeFlags = !placeFlags;
 
     flagToggleButton.style.backgroundColor = placeFlags
-        ? "var(--cell-background)"
+        ? "var(--border-color)"
         : "transparent";
 });
 
