@@ -3,7 +3,7 @@ import { revealNextCells, revealBombs } from "./revealCells.js";
 import { renderGame } from "./render.js";
 import { toggleTheme } from "./support.js";
 
-function handleClick(event, matrix, row, col) {
+function handleClick(event, matrix, row, col, bombQuantity) {
     let cell = event
         ? event.target
         : document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
@@ -19,6 +19,11 @@ function handleClick(event, matrix, row, col) {
 
     cell.classList.remove("cover");
 
+
+    if (document.querySelectorAll(".cover").length == bombQuantity) {
+        console.log("Win")
+    }
+
     const cellValue = matrix[row][col];
 
     cell.innerHTML = cellValue === "x" ? "💣" : cellValue || "";
@@ -31,7 +36,7 @@ function handleClick(event, matrix, row, col) {
             }, 800);
             return;
         case 0:
-            revealNextCells(matrix, row, col, handleClick);
+            revealNextCells(matrix, row, col, handleClick, bombQuantity);
             return;
     }
 }
@@ -55,7 +60,7 @@ flagToggleButton.addEventListener("click", () => {
     placeFlags = !placeFlags;
 
     flagToggleButton.style.backgroundColor = placeFlags
-        ? "var(--border-color)"
+        ? "var(--cell-background)"
         : "transparent";
 });
 
@@ -66,11 +71,13 @@ function main() {
     const toggleButton = document.getElementById("theme-toggle");
     toggleTheme(toggleButton);
 
-    const matrix = createMatrix(16, 16, 40);
+    const bombQuantity = 10;
+
+    const matrix = createMatrix(9, 9, bombQuantity);
     console.log(matrix);
 
     const renderSpace = document.getElementById("render-space");
-    renderGame(matrix, renderSpace, handleClick, placeFlag);
+    renderGame(matrix, renderSpace, handleClick, placeFlag, bombQuantity);
 }
 
 main();
