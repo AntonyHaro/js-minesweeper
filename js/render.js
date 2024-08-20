@@ -1,4 +1,10 @@
-export const renderGame = (matrix, renderSpace, handleClick, placeFlag, bombQuantity) => {
+export const renderGame = (
+    matrix,
+    renderSpace,
+    handleClick,
+    placeFlag,
+    bombQuantity
+) => {
     const createElement = (tag, className, row, col) => {
         const element = document.createElement(tag);
         element.className = className;

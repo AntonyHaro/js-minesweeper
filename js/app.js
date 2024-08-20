@@ -19,9 +19,8 @@ function handleClick(event, matrix, row, col, bombQuantity) {
 
     cell.classList.remove("cover");
 
-
     if (document.querySelectorAll(".cover").length == bombQuantity) {
-        console.log("Win")
+        console.log("Win");
     }
 
     const cellValue = matrix[row][col];

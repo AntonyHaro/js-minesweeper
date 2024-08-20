@@ -1,4 +1,10 @@
-export const revealNextCells = (matrix, row, col, handleClick, bombQuantity) => {
+export const revealNextCells = (
+    matrix,
+    row,
+    col,
+    handleClick,
+    bombQuantity
+) => {
     const directions = [
         [-1, -1],
         [-1, 0],
@@ -26,6 +32,7 @@ export const revealNextCells = (matrix, row, col, handleClick, bombQuantity) => 
 };
 
 export const revealBombs = (matrix) => {
+    //aqui podemos utilizar a bombsQuantity array para fazer um foreach, como todos os elementos estão nela...
     matrix.forEach((row, rowIndex) => {
         row.forEach((col, colIndex) => {
             if (matrix[rowIndex][colIndex] === "x") {
