@@ -1,7 +1,7 @@
 import { createMatrix } from "./matrix.js";
 import { revealNextCells, revealBombs } from "./revealCells.js";
 import { renderGame } from "./render.js";
-import { toggleTheme } from "./support.js";
+import { ableToggleTheme } from "./support.js";
 
 function handleClick(event, matrix, row, col, bombQuantity) {
     let cell = event
@@ -17,27 +17,26 @@ function handleClick(event, matrix, row, col, bombQuantity) {
 
     if (cell.innerHTML === "🚩") return;
 
-    cell.classList.remove("cover");
-
+    
     if (document.querySelectorAll(".cover").length == bombQuantity) {
+        endGame = true;
         console.log("Win");
     }
-
+    
+    cell.classList.remove("cover");
+    
     const cellValue = matrix[row][col];
-
     cell.innerHTML = cellValue === "x" ? "💣" : cellValue || "";
 
-    switch (cellValue) {
-        case "x":
-            endGame = true;
-            setTimeout(() => {
-                revealBombs(matrix);
-            }, 800);
-            return;
-        case 0:
-            revealNextCells(matrix, row, col, handleClick, bombQuantity);
-            return;
+    if (cellValue === "x") {
+        endGame = true;
+        setTimeout(() => {
+            revealBombs(matrix);
+        }, 800);
+        return;
     }
+
+    revealNextCells(matrix, row, col, handleClick, bombQuantity);
 }
 
 function placeFlag(event) {
@@ -68,11 +67,11 @@ let placeFlags = false;
 
 function main() {
     const toggleButton = document.getElementById("theme-toggle");
-    toggleTheme(toggleButton);
+    ableToggleTheme(toggleButton);
 
-    const bombQuantity = 10;
+    const bombQuantity = 40;
 
-    const matrix = createMatrix(9, 9, bombQuantity);
+    const matrix = createMatrix(16, 16, bombQuantity);
     console.log(matrix);
 
     const renderSpace = document.getElementById("render-space");

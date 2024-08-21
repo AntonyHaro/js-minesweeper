@@ -32,18 +32,10 @@ export const revealNextCells = (
 };
 
 export const revealBombs = (matrix) => {
-    //aqui podemos utilizar a bombsQuantity array para fazer um foreach, como todos os elementos estão nela...
-    matrix.forEach((row, rowIndex) => {
-        row.forEach((col, colIndex) => {
-            if (matrix[rowIndex][colIndex] === "x") {
-                const cell = document.querySelector(
-                    `.cell[data-row="${rowIndex}"][data-col="${colIndex}"]`
-                );
-                if (cell) {
-                    cell.innerHTML = "💣";
-                    cell.className = "cell bomb";
-                }
-            }
-        });
+    const bombCells = document.querySelectorAll(".bomb");
+
+    bombCells.forEach(bombCell => {
+        bombCell.className = "cell bomb"
+        bombCell.innerHTML = "💣"
     });
 };

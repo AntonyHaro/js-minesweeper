@@ -5,11 +5,11 @@ export const renderGame = (
     placeFlag,
     bombQuantity
 ) => {
-    const createElement = (tag, className, row, col) => {
+    const createCell = (tag, className, rowIndex, colIndex) => {
         const element = document.createElement(tag);
         element.className = className;
-        element.dataset.row = row;
-        element.dataset.col = col;
+        element.dataset.row = rowIndex;
+        element.dataset.col = colIndex;
         return element;
     };
 
@@ -17,24 +17,19 @@ export const renderGame = (
     renderSpace.style.gridTemplateColumns = `repeat(${matrix[0].length}, 1fr)`;
 
     matrix.forEach((row, rowIndex) => {
-        row.forEach((col, colIndex) => {
-            const cell =
-                matrix[rowIndex][colIndex] === "x"
-                    ? createElement(
-                          "div",
-                          "cell bomb cover",
-                          rowIndex,
-                          colIndex
-                      )
-                    : createElement("div", "cell cover", rowIndex, colIndex);
+        row.forEach((cellValue, colIndex) => {
+            const isBomb = cellValue === "x";
+            const cell = createCell(
+                "div",
+                `cell ${isBomb ? "bomb" : ""} cover`,
+                rowIndex,
+                colIndex
+            );
 
             cell.addEventListener("click", (event) =>
                 handleClick(event, matrix, rowIndex, colIndex, bombQuantity)
             );
-
-            cell.addEventListener("contextmenu", (event) => {
-                placeFlag(event);
-            });
+            cell.addEventListener("contextmenu", placeFlag);
 
             renderSpace.appendChild(cell);
         });
