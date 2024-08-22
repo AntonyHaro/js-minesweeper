@@ -1,3 +1,5 @@
+import { createCell } from "./utils.js";
+
 export const renderGame = (
     matrix,
     renderSpace,
@@ -5,14 +7,6 @@ export const renderGame = (
     placeFlag,
     bombQuantity
 ) => {
-    const createCell = (tag, className, rowIndex, colIndex) => {
-        const element = document.createElement(tag);
-        element.className = className;
-        element.dataset.row = rowIndex;
-        element.dataset.col = colIndex;
-        return element;
-    };
-
     renderSpace.style.gridTemplateRows = `repeat(${matrix.length}, 1fr)`;
     renderSpace.style.gridTemplateColumns = `repeat(${matrix[0].length}, 1fr)`;
 

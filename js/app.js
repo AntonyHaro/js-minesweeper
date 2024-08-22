@@ -1,7 +1,7 @@
 import { createMatrix } from "./matrix.js";
 import { revealNextCells, revealBombs } from "./revealCells.js";
 import { renderGame } from "./render.js";
-import { ableToggleTheme } from "./support.js";
+import { ableToggleTheme } from "./utils.js";
 
 function handleClick(event, matrix, row, col, bombQuantity) {
     let cell = event
