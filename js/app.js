@@ -17,14 +17,13 @@ function handleClick(event, matrix, row, col, bombQuantity) {
 
     if (cell.innerHTML === "🚩") return;
 
-    
     if (document.querySelectorAll(".cover").length == bombQuantity) {
         endGame = true;
         console.log("Win");
     }
-    
+
     cell.classList.remove("cover");
-    
+
     const cellValue = matrix[row][col];
     cell.innerHTML = cellValue === "x" ? "💣" : cellValue || "";
 
@@ -34,9 +33,9 @@ function handleClick(event, matrix, row, col, bombQuantity) {
             revealBombs(matrix);
         }, 800);
         return;
+    } else if (cellValue === 0) {
+        revealNextCells(matrix, row, col, handleClick, bombQuantity);
     }
-
-    revealNextCells(matrix, row, col, handleClick, bombQuantity);
 }
 
 function placeFlag(event) {
