@@ -37,7 +37,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
   transition: 0.3s;
 }
 
@@ -75,7 +75,7 @@ main {
   align-items: center;
   border: 1px solid var(--border-color);
   border-radius: 5px;
-  font-size: 1em;
+  font-size: 0.9em;
   transition: 0.2s;
 }
 
