@@ -64,7 +64,7 @@ flagToggleButton.addEventListener("click", () => {
     placeFlags = !placeFlags;
 
     flagToggleButton.style.backgroundColor = placeFlags
-        ? "var(--cell-background)"
+        ? "var(--border-color)"
         : "transparent";
 });
 
@@ -93,7 +93,7 @@ function main() {
     const toggleButton = document.getElementById("theme-toggle");
     ableToggleTheme(toggleButton);
 
-    const bombQuantity = 4;
+    const bombQuantity = 10;
     const matrix = createMatrix(9, 9, bombQuantity);
     console.log(matrix);
 
