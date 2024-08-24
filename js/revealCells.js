@@ -31,11 +31,20 @@ export const revealNextCells = (
     }
 };
 
-export const revealBombs = (matrix) => {
+export const revealBombs = () => {
     const bombCells = document.querySelectorAll(".bomb");
 
-    bombCells.forEach(bombCell => {
-        bombCell.className = "cell bomb"
-        bombCell.innerHTML = "💣"
+    bombCells.forEach((bombCell) => {
+        bombCell.className = "cell bomb";
+        bombCell.innerHTML = "💣";
+    });
+};
+
+export const winGame = () => {
+    const bombCells = document.querySelectorAll(".bomb");
+
+    bombCells.forEach((bombCell) => {
+        bombCell.className = "cell win";
+        bombCell.innerHTML = "😀";
     });
 };

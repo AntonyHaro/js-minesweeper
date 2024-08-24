@@ -1,7 +1,7 @@
 import { createMatrix } from "./matrix.js";
-import { revealNextCells, revealBombs } from "./revealCells.js";
+import { revealNextCells, revealBombs, winGame } from "./revealCells.js";
 import { renderGame } from "./render.js";
-import { ableToggleTheme } from "./utils.js";
+import { ableToggleTheme, formatTime } from "./utils.js";
 
 function handleClick(event, matrix, row, col, bombQuantity) {
     let cell = event
@@ -9,7 +9,6 @@ function handleClick(event, matrix, row, col, bombQuantity) {
         : document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
 
     if (!cell.classList.contains("cover") || endGame) return;
-
     if (placeFlags) {
         placeFlag(event);
         return;
@@ -17,23 +16,28 @@ function handleClick(event, matrix, row, col, bombQuantity) {
 
     if (cell.innerHTML === "🚩") return;
 
+    cell.classList.remove("cover");
+    const cellValue = matrix[row][col];
+
     if (document.querySelectorAll(".cover").length == bombQuantity) {
         endGame = true;
         console.log("Win");
+        winGame()
     }
 
-    cell.classList.remove("cover");
-
-    const cellValue = matrix[row][col];
-    cell.innerHTML = cellValue === "x" ? "💣" : cellValue || "";
-
     if (cellValue === "x") {
+        cell.innerHTML = "💣";
         endGame = true;
         setTimeout(() => {
-            revealBombs(matrix);
+            revealBombs();
         }, 800);
+        setTime(false);
         return;
-    } else if (cellValue === 0) {
+    }
+
+    cell.innerHTML = cellValue || "";
+
+    if (cellValue === 0) {
         revealNextCells(matrix, row, col, handleClick, bombQuantity);
     }
 }
@@ -61,20 +65,37 @@ flagToggleButton.addEventListener("click", () => {
         : "transparent";
 });
 
+function setTime(start, timeContainer) {
+    if (start) {
+        clearInterval(timer);
+        timer = setInterval(() => {
+            time++;
+            timeContainer.textContent = "Tempo de jogo: " + formatTime(time);
+        }, 1000);
+        return;
+    }
+
+    clearInterval(timer);
+}
+
 let endGame = false;
 let placeFlags = false;
+let time = 0;
+let timer;
 
 function main() {
     const toggleButton = document.getElementById("theme-toggle");
     ableToggleTheme(toggleButton);
 
-    const bombQuantity = 40;
-
+    const bombQuantity = 6;
     const matrix = createMatrix(16, 16, bombQuantity);
-    console.log(matrix);
+    console.log(matrix)
 
     const renderSpace = document.getElementById("render-space");
     renderGame(matrix, renderSpace, handleClick, placeFlag, bombQuantity);
+
+    const timeContainer = document.getElementById("time");
+    renderSpace.addEventListener("click", () => setTime(true, timeContainer));
 }
 
 main();

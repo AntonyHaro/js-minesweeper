@@ -1,11 +1,12 @@
 :root {
-  --primary-background: hsl(0, 0%, 93%);
-  --bomb-cell-background: hsl(0, 100%, 72%);
-  --cover-cell-bakckground: hsl(0, 0%, 70%);
-  --cover-cell-bakckground-hover: hsl(0, 0%, 60%);
-  --flag-cell-background: hsl(0, 0%, 80%);
-  --border-color: hsl(0, 0%, 80%);
-  --text-color: hsl(0, 0%, 35%);
+  --primary-background: hsl(0, 0%, 20%);
+  --bomb-cell-background: hsl(0, 75%, 55%);
+  --win-cell-background: rgb(54, 189, 72);
+  --cover-cell-bakckground: hsl(0, 0%, 15%);
+  --cover-cell-bakckground-hover: hsl(0, 0%, 13%);
+  --flag-cell-background: hsl(0, 0%, 23%);
+  --border-color: hsl(0, 0%, 27%);
+  --text-color: hsl(0, 0%, 83%);
 }
 
 * {
@@ -15,14 +16,15 @@
   font-family: "JetBrains Mono", monospace;
 }
 
-body.dark-mode {
-  --primary-background: hsl(0, 0%, 20%);
-  --bomb-cell-background: hsl(0, 75%, 55%);
-  --cover-cell-bakckground: hsl(0, 0%, 15%);
-  --cover-cell-bakckground-hover: hsl(0, 0%, 13%);
-  --flag-cell-background: hsl(0, 0%, 23%);
-  --border-color: hsl(0, 0%, 27%);
-  --text-color: hsl(0, 0%, 83%);
+body.light-mode {
+  --primary-background: hsl(0, 0%, 93%);
+  --bomb-cell-background: hsl(0, 100%, 72%);
+  --win-cell-background: rgb(102, 243, 121);
+  --cover-cell-bakckground: hsl(0, 0%, 70%);
+  --cover-cell-bakckground-hover: hsl(0, 0%, 60%);
+  --flag-cell-background: hsl(0, 0%, 80%);
+  --border-color: hsl(0, 0%, 80%);
+  --text-color: hsl(0, 0%, 35%);
 }
 
 body {
@@ -46,6 +48,7 @@ header {
 }
 
 h1 {
+  font-size: 1.7em;
   color: var(--bomb-cell-background);
 }
 
@@ -70,17 +73,19 @@ button:hover {
   border: 2px solid var(--border-color);
   border-radius: 15px;
   background: transparent;
-  transition: 0.3s;
 }
 
 main {
   width: max-content;
-  display: grid;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   gap: 1.1rem;
 }
 
 #render-space {
-  width: fit-content;
+  place-items: center;
+  width: 100%;
   display: grid;
   gap: 0.3rem;
 }
@@ -107,6 +112,11 @@ main {
   background-color: var(--cover-cell-bakckground);
 }
 
+.win {
+  border: none;
+  background-color: var(--win-cell-background);
+}
+
 .cover:hover {
   cursor: pointer;
   border-radius: 10px;
@@ -128,5 +138,5 @@ hr {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  font-size: 1em;
+  font-size: 0.9em;
 }
