@@ -19,7 +19,7 @@
 body.light-mode {
   --primary-background: hsl(0, 0%, 93%);
   --bomb-cell-background: hsl(0, 100%, 72%);
-  --win-cell-background: rgb(102, 243, 121);
+  --win-cell-background: rgb(42, 170, 59);
   --cover-cell-bakckground: hsl(0, 0%, 70%);
   --cover-cell-bakckground-hover: hsl(0, 0%, 60%);
   --flag-cell-background: hsl(0, 0%, 80%);

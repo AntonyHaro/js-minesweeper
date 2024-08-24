@@ -31,18 +31,18 @@ export const revealNextCells = (
     }
 };
 
-export const revealBombs = () => {
+export const revealBombs = (win) => {
     const bombCells = document.querySelectorAll(".bomb");
+    if (!win) {
+        bombCells.forEach((bombCell) => {
+            bombCell.className = "cell bomb";
+            bombCell.innerHTML = "💣";
+        });
+        return;
+    }
 
-    bombCells.forEach((bombCell) => {
-        bombCell.className = "cell bomb";
-        bombCell.innerHTML = "💣";
-    });
-};
-
-export const winGame = () => {
-    const bombCells = document.querySelectorAll(".bomb");
-
+    const title = document.querySelector("h1");
+    title.style.color = "var(--win-cell-background)";
     bombCells.forEach((bombCell) => {
         bombCell.className = "cell win";
         bombCell.innerHTML = "😀";
