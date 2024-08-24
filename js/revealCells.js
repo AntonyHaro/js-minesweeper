@@ -33,7 +33,10 @@ export const revealNextCells = (
 
 export const revealBombs = (win) => {
     const bombCells = document.querySelectorAll(".bomb");
+    const title = document.querySelector("h1");
+
     if (!win) {
+        title.innerHTML = "☠️ Minesweeper ☠️"
         bombCells.forEach((bombCell) => {
             bombCell.className = "cell bomb";
             bombCell.innerHTML = "💣";
@@ -41,7 +44,7 @@ export const revealBombs = (win) => {
         return;
     }
 
-    const title = document.querySelector("h1");
+    title.innerHTML = "🏆 Minesweeper 🏆"
     title.style.color = "var(--win-cell-background)";
     bombCells.forEach((bombCell) => {
         bombCell.className = "cell win";

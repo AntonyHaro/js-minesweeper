@@ -95,7 +95,7 @@ function main() {
 
     const bombQuantity = 10;
     const matrix = createMatrix(9, 9, bombQuantity);
-    console.log(matrix);
+    console.table(matrix);
 
     const renderSpace = document.getElementById("render-space");
     renderGame(matrix, renderSpace, handleClick, placeFlag, bombQuantity);
