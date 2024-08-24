@@ -49,6 +49,8 @@ function placeFlag(event) {
     event.preventDefault();
     const cell = event.target;
 
+    if (!cell.classList.contains("cover")) return;
+
     if (cell.classList.contains("flag")) {
         cell.classList.remove("flag");
         cell.innerHTML = "";
@@ -94,7 +96,7 @@ function main() {
     ableToggleTheme(toggleButton);
 
     const bombQuantity = 10;
-    const matrix = createMatrix(9, 9, bombQuantity);
+    const matrix = createMatrix(16, 16, bombQuantity);
     console.table(matrix);
 
     const renderSpace = document.getElementById("render-space");

@@ -56,13 +56,13 @@ main {
   width: max-content;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
   gap: 1.1rem;
 }
 
 #render-space {
   place-items: center;
-  width: 100%;
   display: grid;
   gap: 0.3rem;
 }
@@ -105,27 +105,28 @@ main {
 }
 
 hr {
+  width: 100%;
   border: 0;
   height: 1px;
   background-color: var(--border-color);
 }
 
 #player-status {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
   font-size: 0.9em;
 }
 
 #time {
   padding: 1rem;
   border: 2px solid var(--border-color);
-  border-radius: 15px;
-  background: transparent;
+  border-radius: 13px;
 }
 
-button {
+button,
+a {
   cursor: pointer;
   padding: 1rem;
   outline: none;
@@ -135,7 +136,8 @@ button {
   transition: 0.3s;
 }
 
-button:hover {
+button:hover,
+a:hover {
   border-color: var(--cover-cell-background);
-  border-radius: 15px;
+  border-radius: 13px;
 }
