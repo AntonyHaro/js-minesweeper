@@ -1,7 +1,18 @@
 export const ableToggleTheme = (toggleButton) => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "light") {
+        document.body.classList.add("light-mode");
+        toggleButton.innerHTML = "🌙";
+    } else {
+        document.body.classList.remove("light-mode");
+        toggleButton.innerHTML = "🌞";
+    }
+
     toggleButton.addEventListener("click", () => {
         const isLightMode = document.body.classList.toggle("light-mode");
         toggleButton.innerHTML = isLightMode ? "🌙" : "🌞";
+        localStorage.setItem("theme", isLightMode ? "light" : "dark");
     });
 };
 
