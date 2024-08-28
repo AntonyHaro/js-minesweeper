@@ -20,10 +20,10 @@ export const renderGame = (
                 colIndex
             );
 
-            cell.addEventListener("click", (event) =>
-                handleClick(event, matrix, rowIndex, colIndex, bombQuantity)
-            );
-            cell.addEventListener("contextmenu", placeFlag);
+            // cell.addEventListener("click", (event) =>
+            //     handleClick(event, matrix, rowIndex, colIndex, bombQuantity)
+            // );
+            // cell.addEventListener("contextmenu", placeFlag);
 
             renderSpace.appendChild(cell);
         });

@@ -8,18 +8,49 @@ function handleClick(event, matrix, row, col, bombQuantity) {
         ? event.target
         : document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
 
-    if (!cell.classList.contains("cover") || endGame) return;
+    if (!cell.classList.contains("cover") || cell.innerHTML === "🚩" || endGame)
+        return;
+
     if (placeFlags) {
         placeFlag(event);
         return;
     }
 
-    if (cell.innerHTML === "🚩") return;
-
     cell.classList.remove("cover");
-    const cellValue = matrix[row][col];
+
+    const rowIndex = parseInt(cell.dataset.row);
+    const colIndex = parseInt(cell.dataset.col);
+    const cellValue = matrix[rowIndex][colIndex];
 
     revealedCells++;
+    // if (revealedCells === matrix.length * matrix[0].length - bombQuantity) {
+    //     endGame = true;
+    //     console.log("Win");
+    //     revealBombs(true);
+    //     setTime(false);
+    //     return;
+    // }
+
+    // if (cellValue === "x") {
+    //     cell.innerHTML = "💣";
+    //     endGame = true;
+    //     setTimeout(() => {
+    //         revealBombs(false);
+    //     }, 800);
+    //     setTime(false);
+    //     return;
+    // }
+
+    checkEndGame(revealedCells, matrix, bombQuantity);
+
+    cell.innerHTML = cellValue || "";
+
+    if (cellValue === 0) {
+        revealNextCells(matrix, rowIndex, colIndex, handleClick, bombQuantity);
+    }
+}
+
+function checkEndGame(revealedCells, matrix, bombQuantity) {
     if (revealedCells === matrix.length * matrix[0].length - bombQuantity) {
         endGame = true;
         console.log("Win");
@@ -37,19 +68,13 @@ function handleClick(event, matrix, row, col, bombQuantity) {
         setTime(false);
         return;
     }
-
-    cell.innerHTML = cellValue || "";
-
-    if (cellValue === 0) {
-        revealNextCells(matrix, row, col, handleClick, bombQuantity);
-    }
 }
 
 function placeFlag(event) {
     event.preventDefault();
     const cell = event.target;
 
-    if (!cell.classList.contains("cover")) return;
+    if (!cell.classList.contains("cover") || endGame) return;
 
     if (cell.classList.contains("flag")) {
         cell.classList.remove("flag");
@@ -97,13 +122,19 @@ function main() {
 
     const bombQuantity = 10;
     const matrix = createMatrix(16, 16, bombQuantity);
-    console.table(matrix);
 
     const renderSpace = document.getElementById("render-space");
     renderGame(matrix, renderSpace, handleClick, placeFlag, bombQuantity);
 
-    const timeContainer = document.getElementById("time");
-    renderSpace.addEventListener("click", () => setTime(true, timeContainer));
+    renderSpace.addEventListener("click", (event) => {
+        const row = parseInt(event.target.dataset.row);
+        const col = parseInt(event.target.dataset.col);
+        handleClick(event, matrix, row, col, bombQuantity);
+    });
+
+    renderSpace.addEventListener("contextmenu", (event) => {
+        placeFlag(event);
+    });
 }
 
 main();
