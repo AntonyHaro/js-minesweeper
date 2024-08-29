@@ -1,7 +1,7 @@
 import { createMatrix } from "./matrix.js";
 import { revealNextCells, revealBombs } from "./revealCells.js";
 import { renderGame } from "./render.js";
-import { ableToggleTheme, formatTime } from "./utils.js";
+import { ableToggleTheme } from "./utils.js";
 
 function handleClick(event, matrix, row, col, bombQuantity) {
     const cell = event
@@ -15,38 +15,36 @@ function handleClick(event, matrix, row, col, bombQuantity) {
         return;
     }
 
-    if (cell.innerHTML === "🚩") return;
+    if (cell.textContent === "🚩") return;
 
     revealedCells++;
-
     cell.classList.remove("cover");
-
     const cellValue = matrix[row][col];
-    checkEndGame(cell, cellValue, revealedCells, matrix, bombQuantity);
+
+    if (checkEndGame(cell, cellValue, revealedCells, matrix, bombQuantity))
+        return;
 
     if (cellValue === 0) {
         revealNextCells(matrix, row, col, handleClick, bombQuantity);
     }
 
-    cell.innerHTML = cellValue || "";
+    cell.textContent = cellValue || "";
 }
 
 function checkEndGame(cell, cellValue, revealedCells, matrix, bombQuantity) {
-    if (revealedCells === matrix.length * matrix[0].length - bombQuantity) {
-        endGame = true;
-        revealBombs(true);
-        setTime(false);
-        return;
-    }
-
     if (cellValue === "x") {
-        cell.innerHTML = "💣";
+        cell.textContent = "💣";
         endGame = true;
         setTimeout(() => {
             revealBombs(false);
         }, 800);
-        setTime(false);
-        return;
+        return true;
+    }
+
+    if (revealedCells === matrix.length * matrix[0].length - bombQuantity) {
+        endGame = true;
+        revealBombs(true);
+        return true;
     }
 }
 
@@ -58,12 +56,12 @@ function placeFlag(event) {
 
     if (cell.classList.contains("flag")) {
         cell.classList.remove("flag");
-        cell.innerHTML = "";
+        cell.textContent = "";
         return;
     }
 
     cell.classList.add("flag");
-    cell.innerHTML = "🚩";
+    cell.textContent = "🚩";
 }
 
 const flagToggleButton = document.getElementById("flag-toggle");
@@ -83,7 +81,7 @@ function main() {
     const toggleButton = document.getElementById("theme-toggle");
     ableToggleTheme(toggleButton);
 
-    const bombQuantity = 10;
+    const bombQuantity = 6;
     const matrix = createMatrix(9, 9, bombQuantity);
 
     const renderSpace = document.getElementById("render-space");

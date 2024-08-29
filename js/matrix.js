@@ -5,30 +5,23 @@ export const createMatrix = (rows, cols, bombs) => {
 };
 
 const createEmptyMatrix = (rows, cols) => {
-    let matrix = [];
-    for (let i = 0; i < rows; i++) {
-        matrix[i] = [];
-        for (let j = 0; j < cols; j++) {
-            matrix[i][j] = 0;
-        }
-    }
-    return matrix;
+    return Array.from({ length: rows }, () => Array(cols).fill(0));
 };
 
 const addBombs = (matrix, bombs) => {
     const rows = matrix.length;
     const cols = matrix[0].length;
 
-    for (let i = 0; i < bombs; i++) {
-        let row = Math.floor(Math.random() * rows);
-        let col = Math.floor(Math.random() * cols);
+    let bombsPlaced = 0;
+    while (bombsPlaced < bombs) {
+        const row = Math.floor(Math.random() * rows);
+        const col = Math.floor(Math.random() * cols);
 
-        while (matrix[row][col] === "x") {
-            row = Math.floor(Math.random() * rows);
-            col = Math.floor(Math.random() * cols);
+        if (matrix[row][col] !== "x") {
+            matrix[row][col] = "x";
+            updateAdjacentCells(matrix, row, col);
+            bombsPlaced++;
         }
-        matrix[row][col] = "x";
-        updateAdjacentCells(matrix, row, col);
     }
 };
 
@@ -58,7 +51,7 @@ const updateAdjacentCells = (matrix, row, col) => {
             newCol < cols &&
             matrix[newRow][newCol] !== "x"
         ) {
-            matrix[newRow][newCol] = (matrix[newRow][newCol] || 0) + 1;
+            matrix[newRow][newCol] += 1;
         }
     }
 };

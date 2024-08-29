@@ -1,12 +1,8 @@
 import { createCell } from "./utils.js";
 
-export const renderGame = (
-    matrix,
-    renderSpace,
-    handleClick,
-    placeFlag,
-    bombQuantity
-) => {
+export const renderGame = (matrix, renderSpace) => {
+    const fragment = document.createDocumentFragment();
+
     renderSpace.style.gridTemplateRows = `repeat(${matrix.length}, 1fr)`;
     renderSpace.style.gridTemplateColumns = `repeat(${matrix[0].length}, 1fr)`;
 
@@ -19,7 +15,9 @@ export const renderGame = (
                 rowIndex,
                 colIndex
             );
-            renderSpace.appendChild(cell);
+            fragment.appendChild(cell);
         });
     });
+
+    renderSpace.appendChild(fragment);
 };
