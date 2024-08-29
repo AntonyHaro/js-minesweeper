@@ -1,11 +1,11 @@
 :root {
-  --primary-background: hsl(0, 0%, 20%);
+  --primary-background: hsl(210, 18%, 20%);
   --bomb-cell-background: hsl(0, 75%, 55%);
   --win-cell-background: rgb(54, 189, 72);
-  --cover-cell-background: hsl(0, 0%, 15%);
-  --cover-cell-background-hover: hsl(0, 0%, 13%);
-  --flag-cell-background: hsl(0, 0%, 23%);
-  --border-color: hsl(0, 0%, 27%);
+  --cover-cell-background: hsl(210, 20%, 15%);
+  --cover-cell-background-hover: hsl(210, 20%, 13%);
+  --flag-cell-background: hsl(210, 18%, 23%); 
+  --border-color: hsl(210, 18%, 27%);
   --text-color: hsl(0, 0%, 83%);
 }
 
@@ -17,14 +17,14 @@
 }
 
 body.light-mode {
-  --primary-background: hsl(0, 0%, 93%);
+  --primary-background: hsl(210, 35%, 93%);
   --bomb-cell-background: hsl(0, 100%, 72%);
   --win-cell-background: rgb(42, 170, 59);
-  --cover-cell-background: hsl(0, 0%, 70%);
-  --cover-cell-background-hover: hsl(0, 0%, 60%);
+  --cover-cell-background: hsl(210, 25%, 70%);
+  --cover-cell-background-hover: hsl(210, 25%, 60%);
   --flag-cell-background: hsl(0, 0%, 80%);
-  --border-color: hsl(0, 0%, 80%);
-  --text-color: hsl(0, 0%, 35%);
+  --border-color: hsl(210, 35%, 80%);
+  --text-color: hsl(210, 35%, 35%);
 }
 
 body {
@@ -50,6 +50,7 @@ header {
 h1 {
   font-size: 1.7em;
   color: var(--bomb-cell-background);
+  margin-bottom: 0.7rem;
 }
 
 main {
@@ -58,7 +59,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 1.2rem;
 }
 
 #render-space {
@@ -116,6 +117,7 @@ hr {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 3rem;
   font-size: 0.9em;
 }
 
@@ -123,6 +125,13 @@ hr {
   padding: 1rem;
   border: 2px solid var(--border-color);
   border-radius: 13px;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 button,
@@ -134,6 +143,11 @@ a {
   border-radius: 50%;
   background: transparent;
   transition: 0.3s;
+}
+
+a {
+  text-decoration: none;
+  color: none;
 }
 
 button:hover,
