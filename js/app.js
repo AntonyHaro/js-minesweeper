@@ -8,13 +8,14 @@ function handleClick(event, matrix, row, col, bombQuantity) {
         ? event.target
         : document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
 
-    if (!cell.classList.contains("cover") || cell.innerHTML === "🚩" || endGame)
-        return;
+    if (!cell.classList.contains("cover") || endGame) return;
 
     if (placeFlags) {
         placeFlag(event);
         return;
     }
+
+    if (cell.innerHTML === "🚩") return;
 
     revealedCells++;
 
@@ -33,7 +34,6 @@ function handleClick(event, matrix, row, col, bombQuantity) {
 function checkEndGame(cell, cellValue, revealedCells, matrix, bombQuantity) {
     if (revealedCells === matrix.length * matrix[0].length - bombQuantity) {
         endGame = true;
-        console.log("Win");
         revealBombs(true);
         setTime(false);
         return;
@@ -83,8 +83,8 @@ function main() {
     const toggleButton = document.getElementById("theme-toggle");
     ableToggleTheme(toggleButton);
 
-    const bombQuantity = 40;
-    const matrix = createMatrix(16, 16, bombQuantity);
+    const bombQuantity = 10;
+    const matrix = createMatrix(9, 9, bombQuantity);
 
     const renderSpace = document.getElementById("render-space");
     renderGame(matrix, renderSpace, handleClick, placeFlag, bombQuantity);
