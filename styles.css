@@ -1,7 +1,8 @@
 :root {
   --primary-background: hsl(210, 18%, 20%);
-  --bomb-cell-background: hsl(0, 75%, 55%);
-  --win-cell-background: rgb(54, 189, 72);
+  --bomb-cell-background: hsl(342, 65%, 55%);
+  /* --bomb-cell-background: hsl(152, 86%, 57%); */
+  --win-cell-background: hsl(155, 51%, 58%);
   --cover-cell-background: hsl(210, 20%, 15%);
   --cover-cell-background-hover: hsl(210, 20%, 13%);
   --flag-cell-background: hsl(210, 18%, 23%); 
@@ -116,7 +117,7 @@ hr {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 3rem;
   font-size: 0.9em;
 }
