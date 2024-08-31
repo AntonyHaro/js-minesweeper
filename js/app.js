@@ -3,10 +3,52 @@ import { revealNextCells, revealBombs } from "./revealCells.js";
 import { renderGame } from "./render.js";
 import { ableToggleTheme } from "./utils.js";
 
+function numberClick(matrix, row, col, bombQuantity) {
+    let nextFlags = 0
+    const directions = [
+        [-1, -1],
+        [-1, 0],
+        [-1, 1],
+        [0, -1],
+        [0, 1],
+        [1, -1],
+        [1, 0],
+        [1, 1],
+    ];
+
+    for (const [dl, dc] of directions) {
+        const newRow = row + dl;
+        const newCol = col + dc;
+        if (
+            newRow < 0 ||
+            newRow > matrix.length - 1 ||
+            newCol < 0 ||
+            newCol > matrix[0].length - 1
+        ) {
+            continue;
+        }
+        
+        if (document.querySelector(`.cell[data-row="${newRow}"][data-col="${newCol}"]`).textContent == "🚩") {
+            nextFlags++ // todo código acima serve pra contar quantas bandeiras tem ao redor, incrementando nessa variável
+        }
+    }
+    if (document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`).textContent == nextFlags) {
+        revealNextCells(matrix, row, col, handleClick, bombQuantity) // aqui ele compara se o número clicado é igual a quantidade de bandeiras, se sim, faz o reveal como se fosse um 0
+    }
+}
+
 function handleClick(event, matrix, row, col, bombQuantity) {
     const cell = event
         ? event.target
         : document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+
+    if (cell.innerHTML.includes("div")) {
+        return
+    } // notei que quando uma parte do campo que não é célula é clicada, ele manda um palavrão no cell, fiz isso pra já cortar isso
+
+    if (!"".includes(cell.innerHTML) && event !== null && !endGame) {
+        numberClick(matrix, row, col, bombQuantity) //função pra clicar no número e revelar as bombas ao redor
+    }
 
     if (!cell.classList.contains("cover") || endGame) return;
 
@@ -81,8 +123,8 @@ function main() {
     const toggleButton = document.getElementById("theme-toggle");
     ableToggleTheme(toggleButton);
 
-    const bombQuantity = 40;
-    const matrix = createMatrix(16, 16, bombQuantity);
+    const bombQuantity = 10;
+    const matrix = createMatrix(9, 9, bombQuantity);
 
     const renderSpace = document.getElementById("render-space");
     renderGame(matrix, renderSpace, handleClick, placeFlag, bombQuantity);
