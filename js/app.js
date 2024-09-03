@@ -123,8 +123,8 @@ function main() {
     const toggleButton = document.getElementById("theme-toggle");
     ableToggleTheme(toggleButton);
 
-    const bombQuantity = 10;
-    const matrix = createMatrix(9, 9, bombQuantity);
+    const bombQuantity = 40;
+    const matrix = createMatrix(16, 16, bombQuantity);
 
     const renderSpace = document.getElementById("render-space");
     renderGame(matrix, renderSpace, handleClick, placeFlag, bombQuantity);
