@@ -1,13 +1,13 @@
 :root {
   --primary-background: hsl(210, 18%, 20%);
   --bomb-cell-background: hsl(342, 65%, 55%);
-  /* --bomb-cell-background: hsl(152, 86%, 57%); */
   --win-cell-background: hsl(155, 51%, 58%);
   --cover-cell-background: hsl(210, 20%, 15%);
   --cover-cell-background-hover: hsl(210, 20%, 13%);
   --flag-cell-background: hsl(210, 18%, 23%);
-  --border-color: hsl(210, 18%, 27%);
+  --border-color: hsl(210, 18%, 30%);
   --text-color: hsl(0, 0%, 83%);
+  --border-radius: 4px;
 }
 
 * {
@@ -34,10 +34,8 @@ body {
   color: var(--text-color);
   font-size: 16px;
   font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  display: grid;
+  place-content: center;
   gap: 1.5rem;
   transition: 0.3s;
 }
@@ -75,30 +73,30 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
   font-size: 0.9em;
   transition: 0.2s;
 }
 
 .bomb {
-  border: none;
+  border-color: transparent;
   background-color: var(--bomb-cell-background);
 }
 
 .cover {
-  border: none;
+  border-color: transparent;
   background-color: var(--cover-cell-background);
 }
 
 .win {
-  border: none;
+  border-color: transparent;
   background-color: var(--win-cell-background);
 }
 
 .cover:hover {
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 50%;
   background-color: var(--cover-cell-background-hover);
 }
 
@@ -119,31 +117,30 @@ hr {
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  font-size: 0.9em;
-}
-
-#time {
-  padding: 1rem;
-  border: 2px solid var(--border-color);
-  border-radius: 13px;
 }
 
 .button-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.6rem;
+}
+
+.flags-on {
+  background-color: var(--bomb-cell-background);
+  transition: 0.2s;
 }
 
 button,
 a {
+  background-color: var(--border-color);
   cursor: pointer;
-  padding: 1rem;
+  padding: 0.7rem;
   outline: none;
-  border: 2px solid var(--border-color);
-  border-radius: 50%;
-  background: transparent;
-  transition: 0.3s;
+  font-size: 1em;
+  border: none;
+  border-radius: var(--border-radius);
+  transition: 0.2s;
 }
 
 a {
@@ -153,6 +150,10 @@ a {
 
 button:hover,
 a:hover {
-  border-color: var(--cover-cell-background);
-  border-radius: 13px;
+  transform: translateY(-4px);
+}
+
+button:active,
+a:active {
+  background-color: var(--border-color);
 }

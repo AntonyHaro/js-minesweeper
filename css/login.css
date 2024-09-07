@@ -1,13 +1,11 @@
 :root {
   --primary-background: hsl(210, 18%, 20%);
-  --bomb-cell-background: hsl(342, 65%, 55%);
-  --win-cell-background: hsl(155, 51%, 58%);
-  --cover-cell-background: hsl(210, 20%, 15%);
-  --cover-cell-background-hover: hsl(210, 20%, 13%);
-  --flag-cell-background: hsl(210, 18%, 23%);
-  --border-color: hsl(210, 18%, 27%);
+  --highlight-color: hsl(342, 65%, 55%);
+  --difficulty-background-hover: hsl(155, 51%, 58%);
+  --difficulty-background: hsl(210, 20%, 15%);
+  --border-color: hsl(212, 20%, 18%);
   --text-color: hsl(0, 0%, 83%);
-  --border-radius: 8px;
+  --border-radius: 4px;
 }
 
 * {
@@ -19,13 +17,11 @@
 
 body.light-mode {
   --primary-background: hsl(210, 35%, 93%);
-  --bomb-cell-background: hsl(0, 100%, 72%);
-  --win-cell-background: rgb(42, 170, 59);
-  --cover-cell-background: hsl(210, 25%, 70%);
-  --cover-cell-background-hover: hsl(210, 25%, 60%);
-  --flag-cell-background: hsl(0, 0%, 80%);
+  --highlight-color: hsl(0, 100%, 72%);
+  --difficulty-background-hover: hsl(128, 47%, 55%);
+  --difficulty-background: hsl(209, 40%, 85%);
   --border-color: hsl(210, 35%, 80%);
-  --text-color: hsl(210, 35%, 35%);
+  --text-color: hsl(210, 35%, 18%);
 }
 
 body {
@@ -42,7 +38,7 @@ body {
 
 h1 {
   text-align: center;
-  color: var(--bomb-cell-background);
+  color: var(--highlight-color);
 }
 
 main {
@@ -71,7 +67,7 @@ button {
 }
 
 label {
-  background-color: var(--cover-cell-background);
+  background-color: var(--difficulty-background);
   padding: 1rem;
   border-radius: var(--border-radius);
   display: flex;
@@ -83,15 +79,15 @@ label {
 
 label:hover {
   transform: translateX(1%);
-  background-color: var(--win-cell-background);
+  background-color: var(--difficulty-background-hover);
   border-color: transparent;
-  color: var(--cover-cell-background);
-  filter: drop-shadow(1px 1px 3px var(--win-cell-background));
+  color: var(--primary-background);
+  filter: drop-shadow(1px 1px 3px var(--primary-background));
   border-radius: var(--border-radius);
 }
 
 label:hover input[type="radio"]:checked {
-  background-color: var(--cover-cell-background);
+  background-color: var(--primary-background);
 }
 
 input[type="radio"] {
@@ -109,7 +105,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked {
-  background-color: var(--bomb-cell-background);
+  background-color: var(--highlight-color);
 }
 
 .button-container {
@@ -120,42 +116,36 @@ input[type="radio"]:checked {
   margin-top: 3%;
 }
 
-#submit-button {
-  flex: 0.9;
-  background: transparent;
-  cursor: pointer;
+button {
   padding: 1rem;
-  border: 3px solid var(--bomb-cell-background);
-  color: var(--bomb-cell-background);
+  outline: none;
+  cursor: pointer;
   font-size: 1em;
   font-weight: bold;
+  transition: 0.3s;
+  background: transparent;
+}
+
+#submit-button {
+  flex: 0.9;
+  border: 3px solid var(--highlight-color);
+  color: var(--highlight-color);
   border-radius: var(--border-radius);
-  outline: none;
-  transition: 0.2s;
 }
 
 #submit-button:hover {
-  background-color: var(--bomb-cell-background);
+  background-color: var(--highlight-color);
   color: var(--primary-background);
 }
 
 #theme-toggle {
   flex: 0.1;
   cursor: pointer;
-  padding: 1rem;
-  outline: none;
   border: 3px solid var(--border-color);
   border-radius: var(--border-radius);
   background: transparent;
-  transition: 0.3s;
-}
-
-a {
-  text-decoration: none;
-  color: none;
 }
 
 #theme-toggle:hover {
-  border-color: var(--cover-cell-background);
-  border-radius: 13px;
+  background-color: var(--border-color);
 }

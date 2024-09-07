@@ -1,16 +1,16 @@
-export const ableToggleTheme = (toggleButton) => {
+export const ableToggleTheme = (themeToggleButton) => {
     // Obtém o tema salvo e aplica o modo apropriado
     const savedTheme = localStorage.getItem("theme") || "dark";
     const isLightMode = savedTheme === "light";
 
     document.body.classList.toggle("light-mode", isLightMode);
-    toggleButton.textContent = isLightMode ? "🌙" : "🌞";
+    themeToggleButton.textContent = isLightMode ? "🌙" : "🌞";
 
     // Adiciona o evento de clique para alternar o tema
-    toggleButton.addEventListener("click", () => {
+    themeToggleButton.addEventListener("click", () => {
         const isCurrentlyLightMode =
             document.body.classList.toggle("light-mode");
-        toggleButton.textContent = isCurrentlyLightMode ? "🌙" : "🌞";
+        themeToggleButton.textContent = isCurrentlyLightMode ? "🌙" : "🌞";
         localStorage.setItem("theme", isCurrentlyLightMode ? "light" : "dark");
     });
 };

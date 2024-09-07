@@ -64,17 +64,15 @@ function placeFlag(event) {
     cell.textContent = "🚩";
 }
 
-const flagToggleButton = document.getElementById("flag-toggle");
-flagToggleButton.addEventListener("click", () => {
+function toggleFlagMode() {
     placeFlags = !placeFlags;
-    flagToggleButton.style.backgroundColor = placeFlags
-        ? "var(--border-color)"
-        : "transparent";
-});
+    flagToggleButton.className = placeFlags ? "flags-on" : "";
+}
 
 let endGame = false;
 let placeFlags = false;
 let revealedCells = 0;
+const flagToggleButton = document.getElementById("flag-toggle");
 
 function main() {
     const gameDifficulty = localStorage.getItem("gameDifficulty");
@@ -102,6 +100,7 @@ function main() {
 
     const renderSpace = document.getElementById("render-space");
     renderGame(matrix, renderSpace, handleClick, placeFlag, bombQuantity);
+    flagToggleButton.addEventListener("click", toggleFlagMode);
 
     renderSpace.addEventListener("click", (event) => {
         const row = parseInt(event.target.dataset.row);
@@ -113,8 +112,8 @@ function main() {
         placeFlag(event);
     });
 
-    const toggleButton = document.getElementById("theme-toggle");
-    ableToggleTheme(toggleButton);
+    const themeToggleButton = document.getElementById("theme-toggle");
+    ableToggleTheme(themeToggleButton);
 }
 
 main();
