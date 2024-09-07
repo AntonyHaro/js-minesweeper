@@ -15,8 +15,8 @@
             href="assets/favicon.png"
             type="image/x-icon"
         />
-        <link rel="stylesheet" href="styles.css" />
-        <script type="module" src="./js/app.js" defer></script>
+        <link rel="stylesheet" href="./css/login.css" />
+        <script type="module" src="./js/login.js" defer></script>
     </head>
 
     <body>
@@ -24,15 +24,41 @@
             <h1>- Minesweeper -</h1>
         </header>
         <main>
-            <section id="render-space"></section>
-            <hr />
-            <section id="player-status">
-                <div class="button-wrapper">
-                    <button id="theme-toggle">🌞</button>
-                    <button id="flag-toggle">🚩</button>
-                    <a href="index.html">🔁</a>
+            <h2>Choose the game difficulty:</h2>
+            <form action="" id="difficulty-form">
+                <label for="easy">
+                    Easy 💣
+                    <input
+                        type="radio"
+                        name="game-difficulty"
+                        id="easy"
+                        value="easy"
+                    />
+                </label>
+                <label for="medium">
+                    Medium 💣💣
+                    <input
+                        type="radio"
+                        name="game-difficulty"
+                        id="medium"
+                        value="medium"
+                        checked
+                    />
+                </label>
+                <label for="hard">
+                    Hard 💣💣💣
+                    <input
+                        type="radio"
+                        name="game-difficulty"
+                        id="hard"
+                        value="hard"
+                    />
+                </label>
+                <div class="button-container">
+                    <button type="submit" id="submit-button">Play</button>
+                    <button type="button" id="theme-toggle">☀️</button>
                 </div>
-            </section>
+            </form>
         </main>
     </body>
 </html>

@@ -49,7 +49,7 @@ O **Minesweeper** é um jogo de estratégia onde o objetivo é revelar todas as 
 2. **Navegue até o diretório do projeto:**
 
    ```bash
-   cd js-minesweeper
+   cd minesweeper-game
    ```
 
 3. **Abra o `index.html` em seu navegador** para iniciar o jogo e divirta-se!

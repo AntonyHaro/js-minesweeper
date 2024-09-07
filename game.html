@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Minesweeper</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="shortcut icon"
+            href="assets/favicon.png"
+            type="image/x-icon"
+        />
+        <link rel="stylesheet" href="./css/game.css" />
+        <script type="module" src="./js/game.js" defer></script>
+    </head>
+
+    <body>
+        <header>
+            <h1>- Minesweeper -</h1>
+        </header>
+        <main>
+            <section id="render-space"></section>
+            <hr />
+            <section id="player-status">
+                <div class="button-wrapper">
+                    <button id="theme-toggle">☀️</button>
+                    <button id="flag-toggle">🚩</button>
+                    <a href="index.html">🔁</a>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

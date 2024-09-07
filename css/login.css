@@ -1,0 +1,161 @@
+:root {
+  --primary-background: hsl(210, 18%, 20%);
+  --bomb-cell-background: hsl(342, 65%, 55%);
+  --win-cell-background: hsl(155, 51%, 58%);
+  --cover-cell-background: hsl(210, 20%, 15%);
+  --cover-cell-background-hover: hsl(210, 20%, 13%);
+  --flag-cell-background: hsl(210, 18%, 23%);
+  --border-color: hsl(210, 18%, 27%);
+  --text-color: hsl(0, 0%, 83%);
+  --border-radius: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "JetBrains Mono", monospace;
+}
+
+body.light-mode {
+  --primary-background: hsl(210, 35%, 93%);
+  --bomb-cell-background: hsl(0, 100%, 72%);
+  --win-cell-background: rgb(42, 170, 59);
+  --cover-cell-background: hsl(210, 25%, 70%);
+  --cover-cell-background-hover: hsl(210, 25%, 60%);
+  --flag-cell-background: hsl(0, 0%, 80%);
+  --border-color: hsl(210, 35%, 80%);
+  --text-color: hsl(210, 35%, 35%);
+}
+
+body {
+  height: 100vh;
+  background-color: var(--primary-background);
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: bold;
+  display: grid;
+  place-content: center;
+  gap: 3rem;
+  transition: 0.3s;
+}
+
+h1 {
+  text-align: center;
+  color: var(--bomb-cell-background);
+}
+
+main {
+  width: 40vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+h2 {
+  text-align: center;
+}
+
+form {
+  width: 100%;
+  display: grid;
+  gap: 0.5rem;
+}
+
+label,
+input,
+button {
+  width: 100%;
+}
+
+label {
+  background-color: var(--cover-cell-background);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+label:hover {
+  transform: translateX(1%);
+  background-color: var(--win-cell-background);
+  border-color: transparent;
+  color: var(--cover-cell-background);
+  filter: drop-shadow(1px 1px 3px var(--win-cell-background));
+  border-radius: var(--border-radius);
+}
+
+label:hover input[type="radio"]:checked {
+  background-color: var(--cover-cell-background);
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s;
+}
+
+input[type="radio"]:checked {
+  background-color: var(--bomb-cell-background);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 3%;
+}
+
+#submit-button {
+  flex: 0.9;
+  background: transparent;
+  cursor: pointer;
+  padding: 1rem;
+  border: 3px solid var(--bomb-cell-background);
+  color: var(--bomb-cell-background);
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: var(--border-radius);
+  outline: none;
+  transition: 0.2s;
+}
+
+#submit-button:hover {
+  background-color: var(--bomb-cell-background);
+  color: var(--primary-background);
+}
+
+#theme-toggle {
+  flex: 0.1;
+  cursor: pointer;
+  padding: 1rem;
+  outline: none;
+  border: 3px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: transparent;
+  transition: 0.3s;
+}
+
+a {
+  text-decoration: none;
+  color: none;
+}
+
+#theme-toggle:hover {
+  border-color: var(--cover-cell-background);
+  border-radius: 13px;
+}

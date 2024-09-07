@@ -5,7 +5,7 @@
   --win-cell-background: hsl(155, 51%, 58%);
   --cover-cell-background: hsl(210, 20%, 15%);
   --cover-cell-background-hover: hsl(210, 20%, 13%);
-  --flag-cell-background: hsl(210, 18%, 23%); 
+  --flag-cell-background: hsl(210, 18%, 23%);
   --border-color: hsl(210, 18%, 27%);
   --text-color: hsl(0, 0%, 83%);
 }
