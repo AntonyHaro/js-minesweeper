@@ -8,7 +8,7 @@ function handleSubmit(event) {
     ).value;
 
     localStorage.setItem("gameDifficulty", gameDifficulty);
-    window.location.href = "../game.html";
+    window.location.href = "game.html";
 }
 
 document
