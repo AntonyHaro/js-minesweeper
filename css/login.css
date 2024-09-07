@@ -18,7 +18,7 @@
 body.light-mode {
   --primary-background: hsl(210, 35%, 93%);
   --highlight-color: hsl(0, 100%, 72%);
-  --difficulty-background-hover: hsl(128, 47%, 55%);
+  --difficulty-background-hover: hsl(155, 47%, 55%);
   --difficulty-background: hsl(209, 40%, 85%);
   --border-color: hsl(210, 35%, 80%);
   --text-color: hsl(210, 35%, 18%);
@@ -42,7 +42,7 @@ h1 {
 }
 
 main {
-  width: 50vw;
+  width: 45vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,8 +121,13 @@ button {
   outline: none;
   cursor: pointer;
   font-size: 1em;
-  transition: 0.3s;
+  font-weight: bold;
+  transition: 0.2s;
   background: transparent;
+}
+
+button:hover {
+  transform: translateY(-4px);
 }
 
 #submit-button {

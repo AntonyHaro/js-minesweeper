@@ -3,10 +3,59 @@ import { revealNextCells, revealBombs } from "./revealCells.js";
 import { renderGame } from "./render.js";
 import { ableToggleTheme } from "./utils.js";
 
+function numberClick(matrix, row, col, bombQuantity) {
+    let nextFlags = 0;
+    const directions = [
+        [-1, -1],
+        [-1, 0],
+        [-1, 1],
+        [0, -1],
+        [0, 1],
+        [1, -1],
+        [1, 0],
+        [1, 1],
+    ];
+
+    for (const [dl, dc] of directions) {
+        const newRow = row + dl;
+        const newCol = col + dc;
+        if (
+            newRow < 0 ||
+            newRow > matrix.length - 1 ||
+            newCol < 0 ||
+            newCol > matrix[0].length - 1
+        ) {
+            continue;
+        }
+
+        if (
+            document.querySelector(
+                `.cell[data-row="${newRow}"][data-col="${newCol}"]`
+            ).textContent == "🚩"
+        ) {
+            nextFlags++;
+        }
+    }
+    if (
+        document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`)
+            .textContent == nextFlags
+    ) {
+        revealNextCells(matrix, row, col, handleClick, bombQuantity);
+    }
+}
+
 function handleClick(event, matrix, row, col, bombQuantity) {
     const cell = event
         ? event.target
         : document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+
+    if (cell.innerHTML.includes("div")) {
+        return;
+    } 
+
+    if (!"".includes(cell.innerHTML) && event !== null && !endGame) {
+        numberClick(matrix, row, col, bombQuantity); 
+    }
 
     if (!cell.classList.contains("cover") || endGame) return;
 
