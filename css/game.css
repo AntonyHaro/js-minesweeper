@@ -20,7 +20,7 @@
 body.light-mode {
   --primary-background: hsl(210, 35%, 93%);
   --bomb-cell-background: hsl(0, 100%, 72%);
-  --win-cell-background: rgb(42, 170, 59);
+  --win-cell-background: rgb(68, 206, 125);
   --cover-cell-background: hsl(210, 25%, 70%);
   --cover-cell-background-hover: hsl(210, 25%, 60%);
   --flag-cell-background: hsl(0, 0%, 80%);
@@ -73,7 +73,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid var(--border-color);
+  border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   font-size: 0.9em;
   transition: 0.2s;

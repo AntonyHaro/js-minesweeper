@@ -36,7 +36,7 @@ export const revealBombs = (win) => {
     const bombCells = document.querySelectorAll(".bomb");
     const title = document.querySelector("h1");
 
-    title.textContent = win ? "🏆 Minesweeper 🏆" : "☠️ Minesweeper ☠️";
+    title.textContent = win ? "🏆 Minesweeper 🏆" : title.textContent;
     title.style.color = win ? "var(--win-cell-background)" : "";
 
     bombCells.forEach((bombCell) => {
