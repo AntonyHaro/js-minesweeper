@@ -156,7 +156,7 @@ button:hover {
 
 @media (max-width: 576px) {
     body {
-        font-size: 11px;
+        font-size: 12px;
     }
 
     .button-container {
@@ -170,24 +170,8 @@ button:hover {
     }
 }
 
-/* medium */
 @media (max-width: 768px) {
     body {
-        font-size: 12px;
-    }
-
-    header {
-        width: 100%;
-        justify-content: center;
-        place-items: center;
-        text-align: center;
-    }
-
-    header h1 {
-        flex-direction: column;
-    }
-
-    #gaps .area {
-        padding: 0.5;
+        font-size: 14px;
     }
 }
