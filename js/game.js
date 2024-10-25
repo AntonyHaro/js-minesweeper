@@ -51,10 +51,10 @@ function handleClick(event, matrix, row, col, bombQuantity) {
 
     if (cell.innerHTML.includes("div")) {
         return;
-    } 
+    }
 
     if (!"".includes(cell.innerHTML) && event !== null && !endGame) {
-        numberClick(matrix, row, col, bombQuantity); 
+        numberClick(matrix, row, col, bombQuantity);
     }
 
     if (!cell.classList.contains("cover") || endGame) return;
@@ -118,6 +118,32 @@ function toggleFlagMode() {
     flagToggleButton.className = placeFlags ? "flags-on" : "";
 }
 
+let elapsedTime = 0;
+let timer;
+let isTimerRunning = false;
+
+function startTimer() {
+    if (isTimerRunning) return;
+    isTimerRunning = true;
+
+    let start = Date.now();
+
+    timer = setInterval(() => {
+        console.log(timer);
+        if (endGame) {
+            stopTimer();
+            return;
+        }
+
+        elapsedTime = Date.now() - start;
+    }, 100);
+}
+
+function stopTimer() {
+    clearInterval(timer);
+    console.log(`Elapsed time: ${elapsedTime / 1000} seconds`);
+}
+
 let endGame = false;
 let placeFlags = false;
 let revealedCells = 0;
@@ -156,6 +182,8 @@ function main() {
         const col = parseInt(event.target.dataset.col);
         handleClick(event, matrix, row, col, bombQuantity);
     });
+
+    renderSpace.addEventListener("click", startTimer, { once: true });
 
     renderSpace.addEventListener("contextmenu", (event) => {
         placeFlag(event);

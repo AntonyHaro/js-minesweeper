@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            let tempoDecorrido = 0;
+            let temporizador;
+
+            // Função para iniciar o temporizador
+            function iniciarTemporizador(condicaoDeParada) {
+                let inicio = Date.now();
+
+                // Inicia o temporizador com um intervalo de 100 milissegundos
+                temporizador = setInterval(() => {
+                    // Atualiza o tempo decorrido em milissegundos
+                    tempoDecorrido = Date.now() - inicio;
+
+                    // Verifica se a condição de parada foi atendida
+                    if (condicaoDeParada()) {
+                        pararTemporizador();
+                    }
+                }, 100);
+            }
+
+            // Função para parar o temporizador
+            function pararTemporizador() {
+                clearInterval(temporizador);
+                console.log(
+                    `Tempo decorrido: ${tempoDecorrido / 1000} segundos`
+                );
+                return tempoDecorrido;
+            }
+
+            // Exemplo de uso: iniciar o temporizador e parar após 5 segundos
+            iniciarTemporizador(() => tempoDecorrido >= 5000);
+        </script>
+    </body>
+</html>

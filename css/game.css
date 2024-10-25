@@ -1,159 +1,165 @@
 :root {
-  --primary-background: hsl(210, 18%, 20%);
-  --bomb-cell-background: hsl(342, 65%, 55%);
-  --win-cell-background: hsl(155, 51%, 58%);
-  --cover-cell-background: hsl(210, 20%, 15%);
-  --cover-cell-background-hover: hsl(210, 20%, 13%);
-  --flag-cell-background: hsl(210, 18%, 23%);
-  --border-color: hsl(210, 18%, 30%);
-  --text-color: hsl(0, 0%, 83%);
-  --border-radius: 4px;
+    --primary-background: hsl(210, 18%, 20%);
+    --bomb-cell-background: hsl(342, 65%, 55%);
+    --win-cell-background: hsl(155, 51%, 58%);
+    --cover-cell-background: hsl(210, 20%, 15%);
+    --cover-cell-background-hover: hsl(210, 20%, 13%);
+    --flag-cell-background: hsl(210, 18%, 23%);
+    --border-color: hsl(210, 18%, 30%);
+    --text-color: hsl(0, 0%, 83%);
+    --border-radius: 4px;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "JetBrains Mono", monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "JetBrains Mono", monospace;
 }
 
 body.light-mode {
-  --primary-background: hsl(210, 35%, 93%);
-  --bomb-cell-background: hsl(0, 100%, 72%);
-  --win-cell-background: rgb(68, 206, 125);
-  --cover-cell-background: hsl(210, 25%, 70%);
-  --cover-cell-background-hover: hsl(210, 25%, 60%);
-  --flag-cell-background: hsl(0, 0%, 80%);
-  --border-color: hsl(210, 35%, 80%);
-  --text-color: hsl(210, 35%, 35%);
+    --primary-background: hsl(210, 35%, 93%);
+    --bomb-cell-background: hsl(0, 100%, 72%);
+    --win-cell-background: rgb(68, 206, 125);
+    --cover-cell-background: hsl(210, 25%, 70%);
+    --cover-cell-background-hover: hsl(210, 25%, 60%);
+    --flag-cell-background: hsl(0, 0%, 80%);
+    --border-color: hsl(210, 35%, 80%);
+    --text-color: hsl(210, 35%, 35%);
 }
 
 body {
-  height: 100vh;
-  background-color: var(--primary-background);
-  color: var(--text-color);
-  font-size: 16px;
-  font-weight: bold;
-  display: grid;
-  place-content: center;
-  gap: 1.5rem;
-  transition: 0.3s;
+    height: 100vh;
+    background-color: var(--primary-background);
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: bold;
+    display: grid;
+    place-content: center;
+    gap: 1.5rem;
+    transition: 0.3s;
 }
 
 header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 h1 {
-  font-size: 1.7em;
-  color: var(--bomb-cell-background);
-  margin-bottom: 0.7rem;
+    font-size: 1.7em;
+    color: var(--bomb-cell-background);
+    margin-bottom: 0.7rem;
 }
 
 main {
-  width: max-content;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 1.2rem;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.2rem;
 }
 
 #render-space {
-  place-items: center;
-  display: grid;
-  gap: 0.3rem;
+    place-items: center;
+    display: grid;
+    gap: 0.3rem;
 }
 
 .cell {
-  height: 30px;
-  width: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  font-size: 0.9em;
-  transition: 0.2s;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 0.9em;
+    transition: 0.2s;
 }
 
 .bomb {
-  border-color: transparent;
-  background-color: var(--bomb-cell-background);
+    border-color: transparent;
+    background-color: var(--bomb-cell-background);
 }
 
 .cover {
-  border-color: transparent;
-  background-color: var(--cover-cell-background);
+    border-color: transparent;
+    background-color: var(--cover-cell-background);
 }
 
 .win {
-  border-color: transparent;
-  background-color: var(--win-cell-background);
+    border-color: transparent;
+    background-color: var(--win-cell-background);
 }
 
 .cover:hover {
-  cursor: pointer;
-  border-radius: 50%;
-  background-color: var(--cover-cell-background-hover);
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: var(--cover-cell-background-hover);
 }
 
 .flag {
-  background-color: var(--flag-cell-background);
+    background-color: var(--flag-cell-background);
 }
 
 hr {
-  width: 100%;
-  border: 0;
-  height: 1px;
-  background-color: var(--border-color);
+    width: 100%;
+    border: 0;
+    height: 1px;
+    background-color: var(--border-color);
 }
 
 #player-status {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#timer-element {
+    padding: 0.7rem;
+    background-color: var(--cover-cell-background);
+    border-radius: var(--border-radius);
 }
 
 .button-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
 }
 
 .flags-on {
-  background-color: var(--bomb-cell-background);
-  transition: 0.2s;
+    background-color: var(--bomb-cell-background);
+    transition: 0.2s;
 }
 
 button,
 a {
-  background-color: var(--border-color);
-  cursor: pointer;
-  padding: 0.7rem;
-  outline: none;
-  font-size: 1em;
-  border: none;
-  border-radius: var(--border-radius);
-  transition: 0.2s;
+    background-color: var(--border-color);
+    cursor: pointer;
+    padding: 0.7rem;
+    outline: none;
+    font-size: 1em;
+    border: none;
+    border-radius: var(--border-radius);
+    transition: 0.2s;
 }
 
 a {
-  text-decoration: none;
-  color: none;
+    text-decoration: none;
+    color: none;
 }
 
 button:hover,
 a:hover {
-  transform: translateY(-4px);
+    transform: translateY(-4px);
 }
 
 button:active,
 a:active {
-  background-color: var(--border-color);
+    background-color: var(--border-color);
 }
