@@ -29,7 +29,7 @@ body.light-mode {
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--primary-background);
     color: var(--text-color);
     font-size: 16px;
@@ -68,8 +68,8 @@ main {
 }
 
 .cell {
-    height: 30px;
-    width: 30px;
+    height: 2vw;
+    width: 2vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,7 +120,6 @@ hr {
 }
 
 #timer-display {
-    color: var(--);
     padding: 0.7rem;
     border: 1px dashed var(--border-color);
     border-radius: var(--border-radius);
@@ -163,4 +162,26 @@ a:hover {
 button:active,
 a:active {
     background-color: var(--border-color);
+}
+
+@media (max-width: 1080px) {
+    body {
+        font-size: 13px;
+    }
+
+    .cell {
+        height: 3vw;
+        width: 3vw;
+    }
+}
+
+@media (max-width: 638px) {
+    body {
+        font-size: 13px;
+    }
+
+    .cell {
+        height: 4vw;
+        width: 4vw;
+    }
 }
