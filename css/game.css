@@ -119,9 +119,10 @@ hr {
     gap: 2rem;
 }
 
-#timer-element {
+#timer-display {
+    color: var(--);
     padding: 0.7rem;
-    background-color: var(--cover-cell-background);
+    border: 1px dashed var(--border-color);
     border-radius: var(--border-radius);
 }
 

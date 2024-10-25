@@ -36,6 +36,7 @@ function numberClick(matrix, row, col, bombQuantity) {
             nextFlags++;
         }
     }
+
     if (
         document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`)
             .textContent == nextFlags
@@ -118,10 +119,6 @@ function toggleFlagMode() {
     flagToggleButton.className = placeFlags ? "flags-on" : "";
 }
 
-let elapsedTime = 0;
-let timer;
-let isTimerRunning = false;
-
 function startTimer() {
     if (isTimerRunning) return;
     isTimerRunning = true;
@@ -130,12 +127,16 @@ function startTimer() {
 
     timer = setInterval(() => {
         console.log(timer);
+
         if (endGame) {
             stopTimer();
             return;
         }
 
         elapsedTime = Date.now() - start;
+        timerDisplay.textContent = `Game time: ${
+            (elapsedTime / 1000).toFixed(2) + "s"
+        }`;
     }, 100);
 }
 
@@ -147,11 +148,16 @@ function stopTimer() {
 let endGame = false;
 let placeFlags = false;
 let revealedCells = 0;
+let elapsedTime = 0;
+let timer;
+let isTimerRunning = false;
+const renderSpace = document.getElementById("render-space");
+const timerDisplay = document.getElementById("timer-display");
+const gameDifficulty = localStorage.getItem("gameDifficulty");
 const flagToggleButton = document.getElementById("flag-toggle");
+const themeToggleButton = document.getElementById("theme-toggle");
 
 function main() {
-    const gameDifficulty = localStorage.getItem("gameDifficulty");
-
     let bombQuantity;
     let matrix;
 
@@ -173,9 +179,7 @@ function main() {
             matrix = createMatrix(16, 16, bombQuantity);
     }
 
-    const renderSpace = document.getElementById("render-space");
     renderGame(matrix, renderSpace, handleClick, placeFlag, bombQuantity);
-    flagToggleButton.addEventListener("click", toggleFlagMode);
 
     renderSpace.addEventListener("click", (event) => {
         const row = parseInt(event.target.dataset.row);
@@ -189,7 +193,7 @@ function main() {
         placeFlag(event);
     });
 
-    const themeToggleButton = document.getElementById("theme-toggle");
+    flagToggleButton.addEventListener("click", toggleFlagMode);
     ableToggleTheme(themeToggleButton);
 }
 
