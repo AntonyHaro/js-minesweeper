@@ -2,19 +2,10 @@ import { createMatrix } from "./matrix.js";
 import { revealNextCells, revealBombs } from "./revealCells.js";
 import { renderGame } from "./render.js";
 import { ableToggleTheme } from "./utils.js";
+import directions from "./constants/directions.js";
 
 function numberClick(matrix, row, col, bombQuantity) {
     let nextFlags = 0;
-    const directions = [
-        [-1, -1],
-        [-1, 0],
-        [-1, 1],
-        [0, -1],
-        [0, 1],
-        [1, -1],
-        [1, 0],
-        [1, 1],
-    ];
 
     for (const [dl, dc] of directions) {
         const newRow = row + dl;

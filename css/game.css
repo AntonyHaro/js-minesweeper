@@ -175,7 +175,7 @@ a:active {
     }
 }
 
-@media (max-width: 638px) {
+@media (max-width: 700px) {
     body {
         font-size: 13px;
     }
@@ -183,5 +183,11 @@ a:active {
     .cell {
         height: 4vw;
         width: 4vw;
+    }
+
+    #timer-display,
+    a,
+    button {
+        padding: 0.3rem;
     }
 }

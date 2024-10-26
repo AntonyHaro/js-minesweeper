@@ -1,3 +1,5 @@
+import directions from "./constants/directions.js";
+
 export const createMatrix = (rows, cols, bombs) => {
     const matrix = createEmptyMatrix(rows, cols);
     addBombs(matrix, bombs);
@@ -28,17 +30,6 @@ const addBombs = (matrix, bombs) => {
 const updateAdjacentCells = (matrix, row, col) => {
     const rows = matrix.length;
     const cols = matrix[0].length;
-
-    const directions = [
-        [-1, -1],
-        [-1, 0],
-        [-1, 1],
-        [0, -1],
-        [0, 1],
-        [1, -1],
-        [1, 0],
-        [1, 1],
-    ];
 
     for (const [dl, dc] of directions) {
         const newRow = row + dl;

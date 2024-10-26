@@ -1,3 +1,5 @@
+import directions from "./constants/directions.js";
+
 export const revealNextCells = (
     matrix,
     row,
@@ -5,17 +7,6 @@ export const revealNextCells = (
     handleClick,
     bombQuantity
 ) => {
-    const directions = [
-        [-1, -1],
-        [-1, 0],
-        [-1, 1],
-        [0, -1],
-        [0, 1],
-        [1, -1],
-        [1, 0],
-        [1, 1],
-    ];
-
     for (let i = 0; i < directions.length; i++) {
         const [dl, dc] = directions[i];
         const newRow = row + dl;
