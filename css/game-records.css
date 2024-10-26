@@ -65,8 +65,53 @@ main {
 
 .game-stats {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
+}
+
+.main-stats {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.stats {
+    display: flex;
+    gap: 0.7rem;
+}
+
+.filter-container {
+    display: flex;
+    gap: 2rem;
+}
+
+label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 0.7rem;
+}
+
+label input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 30px;
+    height: 30px;
+    background-color: var(--record-background);
+    border-radius: 50%;
+    position: relative;
+    transition: 0.2s;
+}
+
+label input[type="checkbox"]:checked + .checkmark {
+    background-color: var(--highlight-color);
+}
+
+label:hover .checkmark {
+    background-color: var(--border-color);
 }
 
 a {
@@ -145,8 +190,7 @@ a:hover {
     padding: 0.7rem;
     border-radius: 50%;
     cursor: pointer;
-    border: 3px solid var(--border-color);
-    background: transparent;
+    background: var(--border-color);
     transition: 0.2s;
 }
 
@@ -155,30 +199,18 @@ a:hover {
     transform: translateY(-3px);
 }
 
-/* Small Devices (576px a 768px) */
 @media (max-width: 768px) {
     body {
         font-size: 13px;
     }
 
-    .game-stats {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    #wins,
-    #defeats {
-        padding: 0.5rem;
-    }
-
-    .game-stats div,
-    .game-stats a {
-        width: 100%;
+    .checkmark {
+        height: 18px;
+        width: 18px;
     }
 }
 
-/* Medium Devices (768px a 992px) */
-@media (max-width: 992px) {
+@media (max-width: 1080px) {
     body {
         font-size: 14px;
         gap: 2.5rem;
@@ -192,19 +224,42 @@ a:hover {
         width: 70vw;
     }
 
+    .game-stats {
+        flex-direction: column;
+    }
+
+    .main-stats {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .stats {
+        width: 40%;
+        flex-direction: column;
+    }
+
+    #defeats, #wins {
+        padding: 0.5rem;    
+        text-align: center;
+    }
+
+    .checkmark {
+        height: 24px;
+        width: 24px;
+    }
+
     .record {
         flex-direction: column;
-        gap: 1rem;
+        align-items: flex-start;
+        gap: 0.7rem;
+    }
+
+    .time {
+        margin-top: 2%;
     }
 
     #theme-toggle {
         padding: 0.5rem;
-    }
-}
-
-@media (max-width: 992px) {
-    body {
-        font-size: 15px;
     }
 }
 

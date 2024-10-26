@@ -17,11 +17,48 @@
             <div id="theme-toggle">☀️</div>
         </header>
         <main>
-            <div class="game-stats">
-                <div id="wins">0 Wins</div>
-                <div id="defeats">0 Defeats</div>
-                <a href="./index.html">back to game</a>
-            </div>
+            <section class="game-stats">
+                <div class="main-stats">
+                    <div class="stats">
+                        <div id="wins">0 Wins</div>
+                        <div id="defeats">0 Defeats</div>
+                    </div>
+                    <a href="./index.html">back to game</a>
+                </div>
+                <div class="filter-container">
+                    <label for="all-filter"
+                        >All
+                        <input
+                            type="checkbox"
+                            name="all-filter"
+                            id="all-filter"
+                            class="checkbox-filter"
+                            checked /><span class="checkmark"></span
+                    ></label>
+
+                    <label for="wins-filter"
+                        >Wins
+                        <input
+                            type="checkbox"
+                            name="wins-filter"
+                            id="wins-filter"
+                            class="checkbox-filter" /><span
+                            class="checkmark"
+                        ></span
+                    ></label>
+
+                    <label for="defeats-filter"
+                        >Defeats
+                        <input
+                            type="checkbox"
+                            name="defeats-filter"
+                            id="defeats-filter"
+                            class="checkbox-filter" /><span
+                            class="checkmark"
+                        ></span
+                    ></label>
+                </div>
+            </section>
             <section id="records">
                 <p id="no-records"></p>
             </section>
