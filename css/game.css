@@ -4,7 +4,7 @@
     --win-cell-background: hsl(155, 51%, 58%);
     --cover-cell-background: hsl(210, 20%, 15%);
     --cover-cell-background-hover: hsl(210, 20%, 13%);
-    --flag-cell-background: hsl(210, 18%, 23%);
+    --flag-cell-background: hsl(210, 20%, 23%);
     --border-color: hsl(210, 18%, 30%);
     --text-color: hsl(0, 0%, 83%);
     --border-radius: 4px;
@@ -23,7 +23,7 @@ body.light-mode {
     --win-cell-background: rgb(68, 206, 125);
     --cover-cell-background: hsl(210, 25%, 70%);
     --cover-cell-background-hover: hsl(210, 25%, 60%);
-    --flag-cell-background: hsl(0, 0%, 80%);
+    --flag-cell-background: hsl(212, 20%, 80%);
     --border-color: hsl(210, 35%, 80%);
     --text-color: hsl(210, 35%, 35%);
 }
@@ -42,14 +42,15 @@ body {
 
 header {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 h1 {
     font-size: 1.7em;
     color: var(--bomb-cell-background);
-    margin-bottom: 0.7rem;
 }
 
 main {
@@ -68,12 +69,12 @@ main {
 }
 
 .cell {
-    height: 2vw;
-    width: 2vw;
+    height: 30px;
+    width: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid var(--border-color);
+    border: 1px dashed var(--border-color);
     border-radius: var(--border-radius);
     font-size: 0.9em;
     transition: 0.2s;
@@ -105,7 +106,7 @@ main {
 }
 
 hr {
-    width: 100%;
+    width: 75%;
     border: 0;
     height: 1px;
     background-color: var(--border-color);
@@ -116,13 +117,17 @@ hr {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
-#timer-display {
-    padding: 0.7rem;
-    border: 1px dashed var(--border-color);
-    border-radius: var(--border-radius);
+#game-records {
+    color: var(--bomb-cell-background);
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+#game-records:hover {
+    transform: translateY(-3px);
 }
 
 .button-wrapper {
@@ -138,7 +143,8 @@ hr {
 }
 
 button,
-a {
+#restart {
+    text-decoration: none;
     background-color: var(--border-color);
     cursor: pointer;
     padding: 0.7rem;
@@ -149,45 +155,112 @@ a {
     transition: 0.2s;
 }
 
-a {
-    text-decoration: none;
-    color: none;
-}
-
 button:hover,
-a:hover {
+#restart:hover {
     transform: translateY(-4px);
 }
 
-button:active,
-a:active {
-    background-color: var(--border-color);
-}
-
-@media (max-width: 1080px) {
+/* Extra Small Devices (até 576px de largura) */
+@media (max-width: 576px) {
     body {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .cell {
-        height: 3vw;
-        width: 3vw;
-    }
-}
-
-@media (max-width: 700px) {
-    body {
-        font-size: 13px;
+        height: 16px;
+        width: 16px;
     }
 
-    .cell {
-        height: 4vw;
-        width: 4vw;
-    }
-
-    #timer-display,
-    a,
+    #restart,
+    #game-records,
     button {
         padding: 0.3rem;
+    }
+
+    #player-status {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Small Devices (576px a 768px) */
+@media (min-width: 576px) and (max-width: 768px) {
+    body {
+        font-size: 13px;
+    }
+
+    .cell {
+        height: 22px;
+        width: 22px;
+    }
+
+    #restart,
+    #game-records,
+    button {
+        padding: 0.4rem;
+    }
+
+    #player-status {
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+}
+
+/* Medium Devices (768px a 992px) */
+@media (min-width: 768px) and (max-width: 992px) {
+    body {
+        font-size: 14px;
+    }
+
+    .cell {
+        height: 22px;
+        width: 22px;
+    }
+
+    #restart,
+    #game-records,
+    button {
+        padding: 0.4rem;
+    }
+
+    #player-status {
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+}
+
+/* Large Devices (992px a 1200px) */
+@media (min-width: 992px) and (max-width: 1200px) {
+    body {
+        font-size: 15px;
+    }
+
+    .cell {
+        height: 24px;
+        width: 24px;
+    }
+}
+
+/* Extra Large Devices (1200px a 1400px) */
+@media (min-width: 1200px) and (max-width: 1400px) {
+    body {
+        font-size: 16px;
+    }
+
+    .cell {
+        height: 26px;
+        width: 26px;
+    }
+}
+
+/* Extra Extra Large Devices (1400px+) */
+@media (min-width: 1400px) {
+    body {
+        font-size: 17px;
+    }
+
+    .cell {
+        height: 28px;
+        width: 28px;
     }
 }
