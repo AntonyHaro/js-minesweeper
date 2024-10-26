@@ -25,15 +25,18 @@ body.light-mode {
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--primary-background);
     color: var(--text-color);
-    font-size: 16px;
     font-weight: bold;
-    display: grid;
+    display: flex;
     place-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     gap: 3.5rem;
     transition: 0.3s;
+    font-size: 16px;
 }
 
 h1 {
@@ -169,6 +172,18 @@ a:hover {
 @media (max-width: 576px) {
     body {
         font-size: 12px;
+    }
+
+    main {
+        text-align: center;
+    }
+
+    #difficulty-form {
+        gap: 0.7rem;
+    }
+
+    #submit-button {
+        margin-top: 3%;
     }
 
     .button-container {
