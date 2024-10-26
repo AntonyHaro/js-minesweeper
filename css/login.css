@@ -188,3 +188,8 @@ a:hover {
     }
 }
 
+@media (min-width: 1400px) {
+    body {
+        font-size: 17px;
+    }
+}

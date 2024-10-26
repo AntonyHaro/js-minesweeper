@@ -37,8 +37,10 @@ body {
     color: var(--text-color);
     font-size: 16px;
     font-weight: bold;
-    display: grid;
-    place-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     gap: 4rem;
     transition: 0.3s;
 }
@@ -76,7 +78,6 @@ a {
 
 a:hover {
     color: var(--text-color);
-    transform: translateY(-2px);
 }
 
 #wins,
@@ -114,6 +115,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 2rem;
     transition: 0.2s;
 }
 
@@ -140,7 +142,7 @@ a:hover {
 }
 
 #theme-toggle {
-    padding: 1rem;
+    padding: 0.7rem;
     border-radius: 50%;
     cursor: pointer;
     border: 3px solid var(--border-color);
@@ -153,24 +155,61 @@ a:hover {
     transform: translateY(-3px);
 }
 
-@media (max-width: 576px) {
+/* Small Devices (576px a 768px) */
+@media (max-width: 768px) {
     body {
-        font-size: 12px;
+        font-size: 13px;
     }
 
-    .button-container {
+    .game-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    #wins,
+    #defeats {
+        padding: 0.5rem;
+    }
+
+    .game-stats div,
+    .game-stats a {
+        width: 100%;
+    }
+}
+
+/* Medium Devices (768px a 992px) */
+@media (max-width: 992px) {
+    body {
+        font-size: 14px;
+        gap: 2.5rem;
+    }
+
+    header {
+        gap: 1rem;
+    }
+
+    main {
+        width: 70vw;
+    }
+
+    .record {
         flex-direction: column;
         gap: 1rem;
     }
 
     #theme-toggle {
-        width: fit-content;
-        border-radius: 50%;
+        padding: 0.5rem;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     body {
-        font-size: 14px;
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 1400px) {
+    body {
+        font-size: 17px;
     }
 }

@@ -128,7 +128,6 @@ hr {
 
 #game-records:hover {
     color: var(--text-color);
-    /* transform: translateY(-2px); */
 }
 
 .button-wrapper {
