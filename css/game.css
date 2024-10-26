@@ -121,13 +121,14 @@ hr {
 }
 
 #game-records {
-    color: var(--bomb-cell-background);
+    color: gray;
     text-decoration: none;
     transition: 0.2s;
 }
 
 #game-records:hover {
-    transform: translateY(-3px);
+    color: var(--text-color);
+    /* transform: translateY(-2px); */
 }
 
 .button-wrapper {

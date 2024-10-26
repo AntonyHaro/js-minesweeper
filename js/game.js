@@ -76,6 +76,9 @@ function checkEndGame(cell, cellValue, revealedCells, matrix, bombQuantity) {
     if (cellValue === "x") {
         cell.textContent = "💣";
         endGame = true;
+
+        saveGameResult(false, elapsedTime);
+
         setTimeout(() => {
             revealBombs(false);
         }, 800);
@@ -84,6 +87,9 @@ function checkEndGame(cell, cellValue, revealedCells, matrix, bombQuantity) {
 
     if (revealedCells === matrix.length * matrix[0].length - bombQuantity) {
         endGame = true;
+
+        saveGameResult(true, elapsedTime);
+
         revealBombs(true);
         return true;
     }
@@ -134,6 +140,21 @@ function startTimer() {
 function stopTimer() {
     clearInterval(timer);
     console.log(`Elapsed time: ${elapsedTime / 1000} seconds`);
+}
+
+function saveGameResult(result, elapsedTime) {
+    const gameRecords = JSON.parse(localStorage.getItem("gameRecords")) || [];
+
+    const record = {
+        result: result,
+        difficulty: gameDifficulty,
+        time: (elapsedTime / 1000).toFixed(2) + "s",
+        date: new Date().toLocaleString(),
+    };
+
+    gameRecords.push(record);
+
+    localStorage.setItem("gameRecords", JSON.stringify(gameRecords));
 }
 
 let endGame = false;
