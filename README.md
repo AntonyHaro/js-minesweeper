@@ -5,7 +5,6 @@ Bem-vindo ao repositório do **Minesweeper**! Este é o clássico jogo de campo 
 ## 📚 Tabela de Conteúdos
 
 - [🌟 Visão Geral](#-visão-geral)
-- [📦 Estrutura do Projeto](#-estrutura-do-projeto)
 - [⚙️ Funcionalidades](#-funcionalidades)
 - [🚀 Instalação e Execução](#-instalação-e-execução)
 - [🎨 Estilo e Temas](#-estilo-e-temas)
@@ -15,28 +14,14 @@ Bem-vindo ao repositório do **Minesweeper**! Este é o clássico jogo de campo 
 
 O **Minesweeper** é um jogo de estratégia onde o objetivo é revelar todas as células do campo sem ativar as bombas. O jogo é composto por uma grade de células, algumas contendo bombas e outras com números que indicam o número de bombas adjacentes.
 
-## 📦 Estrutura do Projeto
-
-```
-/js-minesweeper
-├── index.html             # Estrutura HTML do jogo
-├── styles.css             # Estilos e temas
-├── /js
-│   ├── app.js             # Lógica principal do jogo
-│   ├── matrix.js          # Manipulação da matriz do jogo
-│   ├── revealCells.js     # Revelação de células e eventos
-│   ├── render.js          # Renderização do tabuleiro
-│   └── utils.js           # Funções auxiliares
-└── /assets
-    ├── favicon.png        # Ícone do navegador
-```
-
 ## ⚙️ Funcionalidades
 
 - **🧩 Matriz Dinâmica**: Criação e gerenciamento de uma matriz de células com bombas.
 - **💣 Revelação de Células**: Clique para revelar células e ver o número de bombas adjacentes.
 - **🚩 Colocação de Bandeiras**: Marque células suspeitas com bandeiras para indicar possíveis bombas.
 - **🌗 Alternância de Tema**: Troque entre modos claro e escuro para personalizar a sua experiência de jogo.
+- **📥 Histórico de Jogos**: Histórico local para as partidas em que venceu/perdeu com informações e estatísticas.
+- **📲 Responsividade**: A aplicação está responsiva e pronta para ser executada em diversos dispositivos.
 
 ## 🚀 Instalação e Execução
 
@@ -62,33 +47,25 @@ O projeto suporta dois temas: claro e escuro. 🌞🌜 A alternância de tema é
 
 ## 🛠️ Estrutura do Código
 
-### `app.js`
+O código do **Minesweeper** foi projetado com uma estrutura modular que promove clareza e flexibilidade. Essa abordagem facilita a manutenção e a expansão das funcionalidades ao longo do tempo. Cada módulo possui uma responsabilidade bem definida, permitindo que diferentes partes do jogo sejam desenvolvidas e testadas de forma independente.
 
-- **`handleClick(event, matrix, row, col, bombQuantity)`**: Gerencia a lógica de clique nas células, revelando o conteúdo das células ou colocando bandeiras. Verifica o estado do jogo e chama as funções apropriadas para revelar células ou lidar com bandeiras.
-- **`checkEndGame(cell, cellValue, revealedCells, matrix, bombQuantity)`**: Verifica as condições de término do jogo, revelando bombas e mostrando a mensagem de vitória ou derrota.
-- **`placeFlag(event)`**: Alterna o modo de colocar bandeiras nas células. Marca ou desmarca uma célula como uma possível bomba.
-- **`main()`**: Inicializa o jogo, configurando a alternância de temas, criando a matriz do jogo e configurando os eventos de clique e contexto para manipular as células.
+### Estrutura Modular
 
-### `matrix.js`
+- **Divisão de Responsabilidades**: O código é dividido em módulos que tratam de aspectos específicos do jogo, como a lógica de interação do usuário, a manipulação da matriz de células, o salvamento de partidas no localStorage e a renderização do tabuleiro. Isso resulta em um fluxo de trabalho mais organizado e facilita a identificação de problemas.
 
-- **`createMatrix(rows, cols, bombs)`**: Cria a matriz do jogo com células vazias e bombas.
-- **`createEmptyMatrix(rows, cols)`**: Gera uma matriz inicial vazia.
-- **`addBombs(matrix, bombs)`**: Adiciona bombas aleatoriamente e atualiza as células adjacentes.
-- **`updateAdjacentCells(matrix, row, col)`**: Atualiza as contagens de bombas nas células ao redor.
+- **Reutilização de Código**: As funcionalidades são organizadas de forma a permitir a reutilização de componentes em diferentes partes do jogo. Isso reduz a duplicação de código e melhora a legibilidade.
 
-### `revealCells.js`
+### Conceitos Aplicados:
 
-- **`revealNextCells(matrix, row, col, handleClick, bombQuantity)`**: Revela células adjacentes quando uma célula vazia é clicada.
-- **`revealBombs(win)`**: Exibe as bombas no final do jogo, dependendo se o jogador venceu ou perdeu.
+- **Interatividade**: O jogo permite que os usuários interajam com a interface, clicando nas células para revelá-las e colocando bandeiras em células suspeitas. A resposta do jogo a essas interações é gerida de forma eficiente, proporcionando uma experiência fluida.
 
-### `render.js`
+- **Feedback Visual**: O sistema de revelação de células e a exibição de bombas no final do jogo oferecem um feedback visual claro, ajudando os jogadores a entenderem o estado atual do jogo.
 
-- **`renderGame(matrix, renderSpace, handleClick, placeFlag, bombQuantity)`**: Renderiza o tabuleiro e configura os eventos de clique.
+- **Persistência de Dados**: A implementação de armazenamento local permite que as preferências dos jogadores, como o tema escolhido, sejam salvas entre as sessões, melhorando a experiência geral.
 
-### `utils.js`
+- **Experiência Personalizada**: A alternância entre modos claro e escuro permite que os jogadores personalizem a aparência do jogo, tornando-o mais acessível e agradável.
 
-- **`ableToggleTheme(toggleButton)`**: Gerencia a alternância entre temas e armazena a preferência no `localStorage`.
-- **`createCell(tag, className, rowIndex, colIndex)`**: Cria e retorna elementos de célula com atributos e classes apropriadas.
+- **Escolha da Dificuldade:** Os jogadores podem selecionar diferentes níveis de dificuldade, que influenciam a quantidade de bombas e o tamanho do tabuleiro. Isso proporciona uma experiência adaptada ao nível de habilidade de cada jogador, aumentando a rejogabilidade e o desafio do jogo.
 
 ---
 
